@@ -46,7 +46,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://nhs000.github.io/" />
 
-<meta property="og:updated_time" content="2020-10-07T01:37:44+07:00" />
+<meta property="og:updated_time" content="2021-02-24T14:22:19+07:00" />
 <meta itemprop="name" content="nhs012 blog">
 <meta itemprop="description" content="">
 
@@ -123,6 +123,26 @@
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/posts/2021-02-24-receive-protobuf-message-from-gcp-pubsub/">Receive Protobuf Message From GCP Pubsub</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-02-24 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:
+ Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM.
+    </div>
+    <div class="read-more">
+      <a href="/posts/2021-02-24-receive-protobuf-message-from-gcp-pubsub/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/posts/tech/2019-02-02-run-jupyter-notebook-online/">Run jupyter notebook online with AWS EC2</a></h1>
