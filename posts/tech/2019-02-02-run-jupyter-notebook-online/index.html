@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Run jupyter notebook online with AWS EC2 - nhs012 blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="nhs000" /><meta name="description" content="Source
+https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6
+Requirement  A AWS EC2&amp;rsquo;s instance  Setup EC2 Create EC2 instance Choose AMI Choose the instance&amp;rsquo;s type Setup network
+You&amp;rsquo;ll need to place this instance in to public subnet and assign to it a public IP. Create key or use existed key for ssh Setup ssh key (optional) At local environment
+1  $ vi ~/.ssh/config   Add this to end of file
+1 2 3 4 5  Host jupyter Hostname {ec2&amp;#39;s public IP above} IdentityFile {above downloaded key} Port 22 User ec2-user   Test access" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
+
+
+<link rel="canonical" href="https://nhs000.github.io/posts/tech/2019-02-02-run-jupyter-notebook-online/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Run jupyter notebook online with AWS EC2" />
+<meta property="og:description" content="Source
+https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6
+Requirement  A AWS EC2&rsquo;s instance  Setup EC2 Create EC2 instance Choose AMI Choose the instance&rsquo;s type Setup network
+You&rsquo;ll need to place this instance in to public subnet and assign to it a public IP. Create key or use existed key for ssh Setup ssh key (optional) At local environment
+1  $ vi ~/.ssh/config   Add this to end of file
+1 2 3 4 5  Host jupyter Hostname {ec2&#39;s public IP above} IdentityFile {above downloaded key} Port 22 User ec2-user   Test access" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nhs000.github.io/posts/tech/2019-02-02-run-jupyter-notebook-online/" />
+<meta property="article:published_time" content="2019-02-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-02-02T00:00:00+00:00" />
+<meta itemprop="name" content="Run jupyter notebook online with AWS EC2">
+<meta itemprop="description" content="Source
+https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6
+Requirement  A AWS EC2&rsquo;s instance  Setup EC2 Create EC2 instance Choose AMI Choose the instance&rsquo;s type Setup network
+You&rsquo;ll need to place this instance in to public subnet and assign to it a public IP. Create key or use existed key for ssh Setup ssh key (optional) At local environment
+1  $ vi ~/.ssh/config   Add this to end of file
+1 2 3 4 5  Host jupyter Hostname {ec2&#39;s public IP above} IdentityFile {above downloaded key} Port 22 User ec2-user   Test access">
+
+
+<meta itemprop="datePublished" content="2019-02-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-02-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="426">
+
+
+
+<meta itemprop="keywords" content="ml,english," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Run jupyter notebook online with AWS EC2"/>
+<meta name="twitter:description" content="Source
+https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6
+Requirement  A AWS EC2&rsquo;s instance  Setup EC2 Create EC2 instance Choose AMI Choose the instance&rsquo;s type Setup network
+You&rsquo;ll need to place this instance in to public subnet and assign to it a public IP. Create key or use existed key for ssh Setup ssh key (optional) At local environment
+1  $ vi ~/.ssh/config   Add this to end of file
+1 2 3 4 5  Host jupyter Hostname {ec2&#39;s public IP above} IdentityFile {above downloaded key} Port 22 User ec2-user   Test access"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">nhs012 blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/posts/">
+        <li class="mobile-menu-item">Posts</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">nhs012 blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/posts/">Posts</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Run jupyter notebook online with AWS EC2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-02-02 </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+    <aside>
+      <header>
+      <h4>Table of Content</h4>
+      </header>
+      <nav id="TableOfContents">
+<ul>
+<li><a href="#requirement">Requirement</a></li>
+<li><a href="#setup-ec2">Setup EC2</a>
+<ul>
+<li><a href="#create-ec2-instance">Create EC2 instance</a></li>
+<li><a href="#setup-ssh-key-optional">Setup ssh key (optional)</a></li>
+<li><a href="#setup-jupyter">Setup jupyter</a></li>
+<li><a href="#config-jupyter">Config jupyter</a></li>
+<li><a href="#set-security-group">Set security group</a></li>
+<li><a href="#launch-jupyter-server">Launch jupyter server</a></li>
+<li><a href="#bonus">Bonus</a>
+<ul>
+<li><a href="#auto-start-jupyter-when-instance-is-restarted">Auto start jupyter when instance is restarted</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#done">Done</a></li>
+</ul>
+</nav>
+    </aside>
+    
+    <div class="post-content">
+      
+
+<p>Source</p>
+
+<p><a href="https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6">https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6</a></p>
+
+<h1 id="requirement">Requirement</h1>
+
+<ul>
+<li>A AWS EC2&rsquo;s instance</li>
+</ul>
+
+<h1 id="setup-ec2">Setup EC2</h1>
+
+<h2 id="create-ec2-instance">Create EC2 instance</h2>
+
+<p>Choose AMI
+<img src="/img/2019-02-02-19-15-41.png" alt="" /></p>
+
+<p>Choose the instance&rsquo;s type
+<img src="/img/2019-02-02-19-16-11.png" alt="" /></p>
+
+<p>Setup network<br />
+You&rsquo;ll need to place this instance in to public subnet and assign to it a public IP.
+<img src="/img/2019-02-02-19-22-26.png" alt="" /></p>
+
+<p>Create key or use existed key for ssh
+<img src="/img/2019-02-02-19-24-42.png" alt="" /></p>
+
+<h2 id="setup-ssh-key-optional">Setup ssh key (optional)</h2>
+
+<p>At local environment</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ vi ~/.ssh/config</code></pre></td></tr></table>
+</div>
+</div>
+<p>Add this to end of file</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Host jupyter
+    Hostname {ec2&#39;s public IP above}
+    IdentityFile {above downloaded key}
+    Port 22
+    User ec2-user</pre></td></tr></table>
+</div>
+</div>
+<p>Test access</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ ssh jupyter
+Last login: Sat Feb  2 09:57:59 2019 from xxxx.xxxx.xxxx
+
+    __|  __|_  )
+    _|  (     /   Amazon Linux 2 AMI
+    ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+3 package(s) needed for security, out of 3 available
+Run &#34;sudo yum update&#34; to apply all updates.
+-bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+[ec2-user@ip-xxx-xxx-xxx ~]$</pre></td></tr></table>
+</div>
+</div>
+<h2 id="setup-jupyter">Setup jupyter</h2>
+
+<ul>
+<li><p>Install anaconda</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ mkdir Downloads
+$ cd Downloads/
+$ wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
+$ bash Anaconda3-4.4.0-Linux-x86_64.sh</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>Generate ssl certificate</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ mkdir ~/certs
+$ cd ~/certs
+$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>Generate password used when login</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ipython</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">from IPython.lib import passwd
+passwd()</pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+<p>You&rsquo;ll see a sha1 hashed string in output. <strong>Save it</strong> for use at config step.</p>
+
+<h2 id="config-jupyter">Config jupyter</h2>
+
+<p>Generate config file</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ jupyter notebook --generate-config</pre></td></tr></table>
+</div>
+</div>
+<p>Open setting file and add following text to the end</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">vim .jupyter/jupyter_notebook_config.py</pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">c = get_config()
+
+# Kernel config
+c.IPKernelApp.pylab = &#39;inline&#39;  # if you want plotting support always in your notebook
+
+# Notebook config
+c.NotebookApp.certfile = u&#39;/home/ec2-user/certs/mycert.pem&#39; #location of your certificate file
+c.NotebookApp.ip = &#39;*&#39;
+c.NotebookApp.open_browser = False  #so that the ipython notebook does not opens up a browser by default
+c.NotebookApp.password = u&#39;{hashstring_above}&#39;  #edit this with the SHA hash that you generated after typing in Step 9
+# This is the port we opened in Step 3.
+c.NotebookApp.port = 8888</pre></td></tr></table>
+</div>
+</div>
+<h2 id="set-security-group">Set security group</h2>
+
+<p>Add port 8888 to access jupyter server</p>
+
+<p><img src="/img/2019-02-02-20-31-48.png" alt="" /></p>
+
+<blockquote>
+<p>If you launched jupyter server at low port as 80, you need to add <code>sudo</code> when launch jupyter server. <a href="https://stackoverflow.com/a/31271618/9913021">Source</a></p>
+</blockquote>
+
+<h2 id="launch-jupyter-server">Launch jupyter server</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">mkdir ~/Notebooks
+cd ~/Notebooks
+jupyter notebook</pre></td></tr></table>
+</div>
+</div>
+<h2 id="bonus">Bonus</h2>
+
+<h3 id="auto-start-jupyter-when-instance-is-restarted">Auto start jupyter when instance is restarted</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">$ mkdir ~/scripts
+$ vi ~/scripts/jupyter-start.sh</pre></td></tr></table>
+</div>
+</div>
+<p>Add following text</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nb">source</span> ~/.bashrc
+<span class="nb">cd</span> /home/ec2-user/Notebooks
+jupyter notebook</code></pre></td></tr></table>
+</div>
+</div>
+<p>Setup cronjob</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">@reboot /home/ec2-user/scripts/start_jupyter.sh &gt; /dev/null</pre></td></tr></table>
+</div>
+</div>
+<h1 id="done">Done</h1>
+
+<p>Enter your login password
+<img src="/img/2019-02-02-20-50-11.png" alt="" /></p>
+
+<p>And
+<img src="/img/2019-02-02-20-50-42.png" alt="" /></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">nhs000</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-02-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/ml/">ml</a>
+          <a href="/tags/english/">english</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/posts/tech/2018-10-04-how-did-i-pass-aws-saa/">
+            <span class="next-text nav-default">Tôi đã pass AWS SAA như thế nào - part 1</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:nhs.000.dev@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/nhs012" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/sonnguyenhuu000/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nhs000/" class="iconfont icon-github" title="github"></a>
+  <a href="https://nhs000.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>nhs000</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on nhs012 blog</title>
+    <link>https://nhs000.github.io/categories/blog/</link>
+    <description>Recent content in blog on nhs012 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>nhs000</copyright>
+    <lastBuildDate>Sat, 29 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://nhs000.github.io/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS prepare</title>
+      <link>https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/</link>
+      <pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/</guid>
+      <description>Table of Contents Exams review What you should review EC2 Exams wrong Additional exam tips Kenesis EBS vs instance store SWF Actors Ec2 AWS Organization VPC Peering Direct connect Security Token SErvice (STS) Elastic container service Review quizlet Notes IAM - Identiy and Access Management Roles Policy S3 Availability S3 classes Charge Version controlling Replication Security and encryption Cloudfront - CDN Storage gateway EC2 Options Instance types EBS Security groups</description>
+    </item>
+    
+  </channel>
+</rss>

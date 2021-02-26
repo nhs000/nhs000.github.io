@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on nhs012 blog</title>
+    <link>https://nhs000.github.io/posts/</link>
+    <description>Recent content in Posts on nhs012 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>nhs000</copyright>
+    <lastBuildDate>Sat, 02 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://nhs000.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Run jupyter notebook online with AWS EC2</title>
+      <link>https://nhs000.github.io/posts/tech/2019-02-02-run-jupyter-notebook-online/</link>
+      <pubDate>Sat, 02 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/tech/2019-02-02-run-jupyter-notebook-online/</guid>
+      <description>Source
+https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6
+Requirement  A AWS EC2&amp;rsquo;s instance  Setup EC2 Create EC2 instance Choose AMI Choose the instance&amp;rsquo;s type Setup network
+You&amp;rsquo;ll need to place this instance in to public subnet and assign to it a public IP. Create key or use existed key for ssh Setup ssh key (optional) At local environment
+1  $ vi ~/.ssh/config   Add this to end of file
+1 2 3 4 5  Host jupyter Hostname {ec2&amp;#39;s public IP above} IdentityFile {above downloaded key} Port 22 User ec2-user   Test access</description>
+    </item>
+    
+    <item>
+      <title>Tôi đã pass AWS SAA như thế nào - part 1</title>
+      <link>https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/</link>
+      <pubDate>Thu, 04 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/</guid>
+      <description>Động lực  Trang bị thêm kiến thức   Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt.</description>
+    </item>
+    
+    <item>
+      <title>AWS prepare</title>
+      <link>https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/</link>
+      <pubDate>Sat, 29 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/</guid>
+      <description>Table of Contents Exams review What you should review EC2 Exams wrong Additional exam tips Kenesis EBS vs instance store SWF Actors Ec2 AWS Organization VPC Peering Direct connect Security Token SErvice (STS) Elastic container service Review quizlet Notes IAM - Identiy and Access Management Roles Policy S3 Availability S3 classes Charge Version controlling Replication Security and encryption Cloudfront - CDN Storage gateway EC2 Options Instance types EBS Security groups</description>
+    </item>
+    
+    <item>
+      <title>So good they can&#39;t ignore you summary</title>
+      <link>https://nhs000.github.io/posts/life/2018-09-17-so-good-people-cant-ignore/</link>
+      <pubDate>Sun, 16 Sep 2018 01:10:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/life/2018-09-17-so-good-people-cant-ignore/</guid>
+      <description>The summary of the So good they can&amp;#39;t ignore you book.  Source   Following your passion is bad, instead go for Mastery Autonomy and Purpose — the trio of things that have been proven to motivate knowledge workers’  1. The Passion Hypothesis Sucks   Self Determination Theory is the idea that your happiness is related to:    Autonomy : the feeling that you have control over your day, and that your actions are important    Competence : the feeling that you are good at what you do    Relatedness : the feeling of connection to other people     It takes time to build the competence and earn the autonomy necessary to generate enjoyment.</description>
+    </item>
+    
+    <item>
+      <title>Tóm tắt giải thuật di truyền</title>
+      <link>https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/</link>
+      <pubDate>Sat, 15 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/</guid>
+      <description>Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.</description>
+    </item>
+    
+    <item>
+      <title>VIMを使用する時に自動的にインプットソースが変わる</title>
+      <link>https://nhs000.github.io/posts/2018-02-11-automatically-change-input-method-vim/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/2018-02-11-automatically-change-input-method-vim/</guid>
+      <description>問題 日本語やベトナム語を入力している時に、コマンモードを移動する度に英語インプットソースに変えないといけないという問題があるんでしょうね。 そ</description>
+    </item>
+    
+    <item>
+      <title>僕にとって役に立ったVimコマンドの紹介</title>
+      <link>https://nhs000.github.io/posts/2017-12-16-my-useful-vim-commands-part-1/</link>
+      <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/2017-12-16-my-useful-vim-commands-part-1/</guid>
+      <description>今まで一年半以上VIMを使ってきました。しかし、まだ知りない機能やファンクションを見つけるのは毎日楽しんでいます。 今回のブログでは、私にとっ</description>
+    </item>
+    
+  </channel>
+</rss>

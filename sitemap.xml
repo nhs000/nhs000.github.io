@@ -1,0 +1,137 @@
+<?xml-stylesheet type="text/xsl" href="https://nhs000.github.io/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://nhs000.github.io/about/</loc>
+    <lastmod>2020-10-07T01:37:44+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/</loc>
+    <lastmod>2020-10-07T01:37:44+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/english/</loc>
+    <lastmod>2019-02-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/ml/</loc>
+    <lastmod>2019-02-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/</loc>
+    <lastmod>2019-02-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/tech/2019-02-02-run-jupyter-notebook-online/</loc>
+    <lastmod>2019-02-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/</loc>
+    <lastmod>2019-02-02T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/aws/</loc>
+    <lastmod>2018-10-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/</loc>
+    <lastmod>2018-10-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/vietnamese/</loc>
+    <lastmod>2018-10-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/</loc>
+    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/categories/blog/</loc>
+    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/categories/</loc>
+    <lastmod>2018-09-29T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/career/</loc>
+    <lastmod>2018-09-16T01:10:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/life/2018-09-17-so-good-people-cant-ignore/</loc>
+    <lastmod>2018-09-16T01:10:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/ai/</loc>
+    <lastmod>2018-09-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/</loc>
+    <lastmod>2018-09-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/2018-02-11-automatically-change-input-method-vim/</loc>
+    <lastmod>2018-02-11T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/2017-12-16-my-useful-vim-commands-part-1/</loc>
+    <lastmod>2017-12-16T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on nhs012 blog</title>
+    <link>https://nhs000.github.io/tags/</link>
+    <description>Recent content in Tags on nhs012 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>nhs000</copyright>
+    <lastBuildDate>Sat, 02 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://nhs000.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>english</title>
+      <link>https://nhs000.github.io/tags/english/</link>
+      <pubDate>Sat, 02 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/english/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ml</title>
+      <link>https://nhs000.github.io/tags/ml/</link>
+      <pubDate>Sat, 02 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aws</title>
+      <link>https://nhs000.github.io/tags/aws/</link>
+      <pubDate>Thu, 04 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vietnamese</title>
+      <link>https://nhs000.github.io/tags/vietnamese/</link>
+      <pubDate>Thu, 04 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/vietnamese/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>career</title>
+      <link>https://nhs000.github.io/tags/career/</link>
+      <pubDate>Sun, 16 Sep 2018 01:10:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/career/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AI</title>
+      <link>https://nhs000.github.io/tags/ai/</link>
+      <pubDate>Sat, 15 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

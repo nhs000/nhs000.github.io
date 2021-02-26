@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>AWS prepare - nhs012 blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="nhs000" /><meta name="description" content="Table of Contents Exams review What you should review EC2 Exams wrong Additional exam tips Kenesis EBS vs instance store SWF Actors Ec2 AWS Organization VPC Peering Direct connect Security Token SErvice (STS) Elastic container service Review quizlet Notes IAM - Identiy and Access Management Roles Policy S3 Availability S3 classes Charge Version controlling Replication Security and encryption Cloudfront - CDN Storage gateway EC2 Options Instance types EBS Security groups" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
+
+
+<link rel="canonical" href="https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="AWS prepare" />
+<meta property="og:description" content="Table of Contents Exams review What you should review EC2 Exams wrong Additional exam tips Kenesis EBS vs instance store SWF Actors Ec2 AWS Organization VPC Peering Direct connect Security Token SErvice (STS) Elastic container service Review quizlet Notes IAM - Identiy and Access Management Roles Policy S3 Availability S3 classes Charge Version controlling Replication Security and encryption Cloudfront - CDN Storage gateway EC2 Options Instance types EBS Security groups" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nhs000.github.io/posts/tech/2018-09-30-aws-prepare/" />
+<meta property="article:published_time" content="2018-09-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-09-29T00:00:00+00:00" />
+<meta itemprop="name" content="AWS prepare">
+<meta itemprop="description" content="Table of Contents Exams review What you should review EC2 Exams wrong Additional exam tips Kenesis EBS vs instance store SWF Actors Ec2 AWS Organization VPC Peering Direct connect Security Token SErvice (STS) Elastic container service Review quizlet Notes IAM - Identiy and Access Management Roles Policy S3 Availability S3 classes Charge Version controlling Replication Security and encryption Cloudfront - CDN Storage gateway EC2 Options Instance types EBS Security groups">
+
+
+<meta itemprop="datePublished" content="2018-09-29T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-09-29T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="7031">
+
+
+
+<meta itemprop="keywords" content="aws," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="AWS prepare"/>
+<meta name="twitter:description" content="Table of Contents Exams review What you should review EC2 Exams wrong Additional exam tips Kenesis EBS vs instance store SWF Actors Ec2 AWS Organization VPC Peering Direct connect Security Token SErvice (STS) Elastic container service Review quizlet Notes IAM - Identiy and Access Management Roles Policy S3 Availability S3 classes Charge Version controlling Replication Security and encryption Cloudfront - CDN Storage gateway EC2 Options Instance types EBS Security groups"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">nhs012 blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/posts/">
+        <li class="mobile-menu-item">Posts</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">nhs012 blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/posts/">Posts</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+  <div class="post-content">
+    
+
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ol>
+<li><a href="#exams-review">Exams review</a>
+
+<ol>
+<li><a href="#what-you-should-review">What you should review</a></li>
+<li><a href="#ec2-exams-wrong">EC2 Exams wrong</a></li>
+<li><a href="#additional-exam-tips">Additional exam tips</a>
+
+<ol>
+<li><a href="#kenesis">Kenesis</a></li>
+<li><a href="#ebs-vs-instance-store">EBS vs instance store</a></li>
+<li><a href="#swf-actors">SWF Actors</a></li>
+<li><a href="#ec2">Ec2</a></li>
+<li><a href="#aws-organization">AWS Organization</a></li>
+<li><a href="#vpc-peering">VPC Peering</a></li>
+<li><a href="#direct-conncet">Direct connect</a></li>
+<li><a href="#security-token-service-sts">Security Token SErvice (STS)</a></li>
+</ol></li>
+<li><a href="#elastic-container-service">Elastic container service</a></li>
+<li><a href="#org7378ac3">Review quizlet</a></li>
+</ol></li>
+<li><a href="#notes">Notes</a>
+
+<ol>
+<li><a href="#iam---identiy-and-access-management">IAM - Identiy and Access Management</a>
+
+<ol>
+<li><a href="#roles">Roles</a></li>
+<li><a href="#policy">Policy</a></li>
+</ol></li>
+<li><a href="#s3">S3</a>
+
+<ol>
+<li><a href="#org25c6786">Availability</a></li>
+<li><a href="#orgd9d4756">S3 classes</a></li>
+<li><a href="#charge">Charge</a></li>
+<li><a href="#version-controlling">Version controlling</a></li>
+<li><a href="#replication">Replication</a></li>
+<li><a href="#security-and-encryption">Security and encryption</a></li>
+</ol></li>
+<li><a href="#cloudfront---cdn">Cloudfront - CDN</a></li>
+<li><a href="#storage-gateway">Storage gateway</a></li>
+<li><a href="#ec2-1">EC2</a>
+
+<ol>
+<li><a href="#options">Options</a></li>
+<li><a href="#instance-types">Instance types</a></li>
+<li><a href="#ebs">EBS</a></li>
+<li><a href="#security-groups">Security groups</a></li>
+<li><a href="#network-and-security">Network and security</a></li>
+<li><a href="#elb---elastic-load-balancer">ELB - Elastic Load Balancer</a></li>
+<li><a href="#ec2-instance-meta-data">EC2 instance meta-data</a></li>
+<li><a href="#bootstrap-scrip">Bootstrap scrip</a></li>
+<li><a href="#auto-scaling">Auto-scaling</a></li>
+<li><a href="#elastic-file-system-efs">Elastic File System EFS</a></li>
+<li><a href="#orgd415acf">ENI - Elastic Network Interface</a></li>
+<li><a href="#lambda">LAMBDA</a></li>
+</ol></li>
+<li><a href="#api-gateway">API gateway</a></li>
+<li><a href="#lamda">Lamda</a></li>
+<li><a href="#route-53">Route 53</a>
+
+<ol>
+<li><a href="#dns">DNS</a></li>
+<li><a href="#routing-policies">Routing policies</a></li>
+</ol></li>
+<li><a href="#org81268b0">Database 101</a>
+
+<ol>
+<li><a href="#orgcbf085e">Exam tips</a></li>
+<li><a href="#orga4df95f">Notes</a></li>
+<li><a href="#org3b34c63">Multi-AZ Read replicas</a></li>
+<li><a href="#org2ac98e2">DynamoDB</a></li>
+<li><a href="#org30d50e3">Redshift</a></li>
+<li><a href="#orgabcf9cd">ElasticCache</a></li>
+</ol></li>
+<li><a href="#vpc">VPC</a></li>
+<li><a href="#sqs">SQS</a></li>
+<li><a href="#swf">SWF</a></li>
+<li><a href="#elastic-transcode">Elastic transcode</a></li>
+<li><a href="#kinesis">Kinesis</a>
+
+<ol>
+<li><a href="#kinesis-stream">Kinesis stream</a></li>
+<li><a href="#kinesis-firehose">Kinesis Firehose</a></li>
+<li><a href="#kinesis-analytics">Kinesis Analytics</a></li>
+</ol></li>
+<li><a href="#sns">SNS</a>
+
+<ol>
+<li><a href="#subcribers">Subcribers:</a></li>
+</ol></li>
+<li><a href="#well-architected">Well-architected</a>
+
+<ol>
+<li><a href="#security">Security</a></li>
+<li><a href="#reliability">Reliability</a></li>
+<li><a href="#perfomance-effective">Perfomance effective</a></li>
+<li><a href="#cost-optimization">Cost optimization</a></li>
+</ol></li>
+<li><a href="#org3230a15">ElasticSearch</a>
+
+<ol>
+<li><a href="#org0aa5d1f">NRT: Gần Realtime, 1 document có thể được indexed và searchable trong vòng 1s</a></li>
+<li><a href="#org5895bec">Cluster: 1 tập hợp các node</a></li>
+<li><a href="#org839af9c">Node: 1 phần của cluster</a></li>
+<li><a href="#orgd17a604">Index:</a></li>
+<li><a href="#orgee8e66c">Document:</a></li>
+<li><a href="#org4f4db18">Shards, Replicas:</a></li>
+</ol></li>
+<li><a href="#orgcc06046">WAF - Web Application Firewall</a></li>
+<li><a href="#org7d171bc">復習</a>
+
+<ol>
+<li><a href="#orgef32300">Exam feedbacks</a></li>
+<li><a href="#orga87e067">Well-architected framework</a></li>
+<li><a href="#orgc5f5734">Redshift <code>[<sup>5</sup>&frasl;<sub>6</sub>]</code></a></li>
+<li><a href="#org5f34a8d">EBS Storage <code>[<sup>4</sup>&frasl;<sub>4</sub>]</code></a></li>
+<li><a href="#org1fe8924">S3 <code>[<sup>5</sup>&frasl;<sub>6</sub>]</code></a></li>
+<li><a href="#orgd5f9157">Storage Gateway <code>[<sup>3</sup>&frasl;<sub>3</sub>]</code></a></li>
+<li><a href="#org5b9e453">VPCS/ Subnets / Peering <code>[<sup>6</sup>&frasl;<sub>6</sub>]</code></a></li>
+<li><a href="#org0cae2da">EC2 classes <code>[<sup>5</sup>&frasl;<sub>5</sub>]</code></a></li>
+<li><a href="#orgcb72676">RDS <code>[<sup>4</sup>&frasl;<sub>6</sub>]</code></a></li>
+<li><a href="#org89e4daa">Setting up 3, 2, 1 Tier web application <code>[0/3]</code></a></li>
+<li><a href="#orgcdea899">ECS - Elastic Container Servicer AWS Beanstalk <code>[<sup>3</sup>&frasl;<sub>4</sub>]</code></a></li>
+<li><a href="#orgafa0f68">Hybrid Architecture:</a></li>
+<li><a href="#org94116af">LAMBDA, APi gateway <code>[<sup>2</sup>&frasl;<sub>2</sub>]</code></a></li>
+<li><a href="#org95917f9">AWS Config</a></li>
+<li><a href="#org5481c52">NGINX apps</a></li>
+<li><a href="#org65e7014">AWS Cognito</a></li>
+<li><a href="#org9df6f68">AWS Practice exams</a></li>
+</ol></li>
+</ol></li>
+</ol>
+
+<p><a id="exams-review"></a></p>
+
+<h1 id="exams-review">Exams review</h1>
+
+<p><a id="what-you-should-review"></a></p>
+
+<h2 id="what-you-should-review">What you should review</h2>
+
+<ul>
+<li>When trying to grant an amazon account access to S3 using access
+control lists what method of identification should you use to
+identify that account with?
+
+<ul>
+<li>The email address of the account or the canonical user ID</li>
+</ul></li>
+<li>Which of the following is not supported by AWS Import/Export?</li>
+<li>You work for a market analysis firm who are designing a new
+environment. They will ingest large amounts of market data via
+Kinesis and then analyse this data using Elastic Map Reduce. The data
+is then imported in to a high performance NoSQL Cassandra database
+which will run on EC2 and then be accessed by traders from around the
+world. The database volume itself will sit on 2 EBS volumes that will
+be grouped into a RAID 0 volume. They are expecting very high demand
+during peak times, with an IOPS performance level of approximately
+15,000. Which EBS volume should you recommend?</li>
+<li>Which of the following is not a valid configuration type for AWS
+Storage gateway.</li>
+<li>Which of the following is NOT a valid SNS subscribers?</li>
+</ul>
+
+<p><a id="ec2-exams-wrong"></a></p>
+
+<h2 id="ec2-exams-wrong">EC2 Exams wrong</h2>
+
+<ol>
+<li><p>Placement group can be in mutiple AZs?</p>
+
+<ul>
+<li>Wrong</li>
+</ul></li>
+
+<li><p>Can delete a snapshot which is root volume of an AMI?</p>
+
+<ul>
+<li>No</li>
+</ul></li>
+
+<li><p>In a default VPC, all AWS EC2 instances are assigned 2 IP addresses
+at launch are: Private IP address and public IP Address.</p></li>
+
+<li><p>If a instance is provisioned in a public security group, it&rsquo;s not
+automatic pulic to internet</p></li>
+</ol>
+
+<p><a id="additional-exam-tips"></a></p>
+
+<h2 id="additional-exam-tips">Additional exam tips</h2>
+
+<p><a id="kenesis"></a></p>
+
+<h3 id="kenesis">Kenesis</h3>
+
+<ul>
+<li>Used to consume big data</li>
+<li>Stream large amounts of social media</li>
+<li>Process large amounts of data:</li>
+<li>Redshift for business intelligence</li>
+</ul>
+
+<p><a id="ebs-vs-instance-store"></a></p>
+
+<h3 id="ebs-vs-instance-store">EBS vs instance store</h3>
+
+<ul>
+<li>EBS are persistent</li>
+<li>EBS can be detached and reattached to other EC2 instances</li>
+<li>Instance store are not persistent, lost data when stop EC2 instance</li>
+<li>Cannot be detached and reattached, they exist only for the life of
+that instance</li>
+</ul>
+
+<p><a id="swf-actors"></a></p>
+
+<h3 id="swf-actors">SWF Actors</h3>
+
+<ul>
+<li>Workflow starters:</li>
+<li>Deciders</li>
+<li>Activity workers</li>
+</ul>
+
+<p><a id="ec2"></a></p>
+
+<h3 id="ec2">Ec2</h3>
+
+<ul>
+<li>Ec2 meta query:</li>
+<li>curl <a href="http://169.254.169.254/latest/meta-data">http://169.254.169.254/latest/meta-data</a></li>
+<li>wget <a href="http://169.254.169.254/latest/meta-data">http://169.254.169.254/latest/meta-data</a></li>
+</ul>
+
+<p><a id="aws-organization"></a></p>
+
+<h3 id="aws-organization">AWS Organization</h3>
+
+<ul>
+<li>Root account -&gt; OU account (AWS Account)</li>
+<li>Paying</li>
+<li>Test/Dev account</li>
+<li>Production account</li>
+<li>..</li>
+<li>Price is lower: Bằng cách tổng tất cả các chi phí vào 1 tài khoản -&gt;
+được giảm giá</li>
+</ul>
+
+<p><a id="vpc-peering"></a></p>
+
+<h3 id="vpc-peering">VPC Peering</h3>
+
+<ul>
+<li>Nối các vpc với nhau</li>
+<li>Có thể nối các vpc ở các AWS account khác nhau nhưng cùng 1 region</li>
+<li>Không có tính bắc cau</li>
+<li>Không thể peer nếu các VPC trùng internal block ip</li>
+</ul>
+
+<p><a id="direct-conncet"></a></p>
+
+<h3 id="direct-connect">Direct connect</h3>
+
+<ul>
+<li>Kết nối your intranet và Amazon VPC</li>
+</ul>
+
+<p><a id="security-token-service-sts"></a></p>
+
+<h3 id="security-token-service-sts">Security Token SErvice (STS)</h3>
+
+<ul>
+<li>Grant users limited and temporary acces to AWS resources. Users can
+come from three sources</li>
+</ul>
+
+<p><a id="elastic-container-service"></a></p>
+
+<h2 id="elastic-container-service">Elastic container service</h2>
+
+<ul>
+<li>ECS: Allows you to manage docker containers on a cluster of ec2
+instances</li>
+<li>Images are stored in a Registry, such as DockerHub or AWS ECR (Amazon
+EC2 Container Registry)</li>
+<li>A Task definition is required to run Docker containers in Amazon ECS</li>
+<li>are text files in JSON format that describe one or more containers
+that form your application</li>
+<li>Nhu la 1 cloud formation template but for docker, configure things
+such as the amount of CPU, RAM etc</li>
+<li>Allows you tu run and maintain a specified number of instances of a
+task definition simultaneously in an ECS cluster</li>
+<li>ECS cluster is a logical grouping of container instances that you can
+place tasks on</li>
+<li>Cluster can contain multiple different container instance types</li>
+<li>Are region-specific</li>
+<li>Container instances can only be part of one cluster at a time</li>
+<li>Can create IAM policies for your clusters to allow or restitrct
+users&rsquo;access to specific clusters</li>
+</ul>
+
+<p><a id="org7378ac3"></a></p>
+
+<h2 id="review-quizlet">Review quizlet</h2>
+
+<ul>
+<li>TODO</li>
+</ul>
+
+<p><a id="notes"></a></p>
+
+<h1 id="notes">Notes</h1>
+
+<p><a id="iam---identiy-and-access-management"></a></p>
+
+<h2 id="iam-identiy-and-access-management">IAM - Identiy and Access Management</h2>
+
+<ul>
+<li>Setup áp dụng cho toàn bộ region</li>
+<li>root account = accout khi đăng nhập bằng email.
+
+<ul>
+<li>Có mọi quyền thực thi mọi thứ trên aws</li>
+<li>Administration Access</li>
+</ul></li>
+<li>Power user có mọi quyền truy cập vào các resource của aws nhưng ko
+thể thay đổi user và group trong IAM.
+
+<ul>
+<li>Power user permission</li>
+</ul></li>
+<li>Default secret key only showed once when finishing creating a new
+user.
+
+<ul>
+<li>Can create new access-secret key.</li>
+</ul></li>
+<li>Có thể thêm permission cho user bằng cách add user vào 1 group hoặc
+thêm trực tiếp permission mà ko cần thông qua group.</li>
+<li>1 user can be member of maximum 10 groups</li>
+</ul>
+
+<p><a id="roles"></a></p>
+
+<h3 id="roles">Roles</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">IAM roles are a secure way to grant permissions to entities that you trust. Examples of entities include the following:
+
+IAM user in another account
+Application code running on an EC2 instance that needs to perform actions on AWS resources
+An AWS service that needs to act on resources in your account to provide its features
+Users from a corporate directory who use identity federation with SAMLflymd</pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>Ví dụ tạo role cho EC2 có thể call các service khác như Lambda, S3
+
+<ul>
+<li>Roles -&gt; Create role -&gt; EC2 -&gt; Select use case -&gt; Choose permission
+policy</li>
+</ul></li>
+<li>Khi gán role cho ec2 instance thì instance đấy có thể kết nối đến aws
+mà không cần phải configure credential.</li>
+<li>Được tạo trong IMA và là global cho mọi regions.</li>
+<li>Gán cho EC2 instance một role thì có thể tự động truy cập lệnh aws ở
+trong instance đó mà không phải lưu key, secret</li>
+<li>Có thể thay đổi role của một instance kể cả sau khi đã launched sử
+dụng console hoặc command</li>
+<li>Role là global</li>
+</ul>
+
+<p><a id="policy"></a></p>
+
+<h3 id="policy">Policy</h3>
+
+<ul>
+<li>Is a document that provides a formal statement of one or more
+permissions.</li>
+</ul>
+
+<p><a id="s3"></a></p>
+
+<h2 id="s3">S3</h2>
+
+<ul>
+<li>Object storage vs block storage (EC2)
+
+<ul>
+<li>Key - value storage
+
+<ul>
+<li>Key ( object name)</li>
+<li>Value (sequence of bytes)</li>
+<li>Version ID (Important for versioning)</li>
+<li>Metadata (created date, updated date &#x2026;)</li>
+</ul></li>
+</ul></li>
+<li>File is 0 - 5TB and storaged in bucket (aka folder)</li>
+<li>Unlimited storage</li>
+<li>When write object (PUT new objects) then you can read it immediately but when update or delete (PUT or DELETE) object it takes time to update.</li>
+<li>Link: <a href="https://{bucket-name}.s3-website-{region_code}.amazonaws.com">https://{bucket-name}.s3-website-{region_code}.amazonaws.com</a></li>
+</ul>
+
+<p><a id="org25c6786"></a></p>
+
+<h3 id="availability">Availability</h3>
+
+<ul>
+<li>Standard: 99.9{9}
+
+<ul>
+<li>99.99% over a given year</li>
+</ul></li>
+<li>S3 with RRS the AVAILABILITY is 99.99%</li>
+</ul>
+
+<p><a id="orgd9d4756"></a></p>
+
+<h3 id="s3-classes">S3 classes</h3>
+
+<ul>
+<li>Setting trong phần properties của object</li>
+<li>S3 - IA:
+
+<ul>
+<li>For data that is accessed less frequently but requires rapid access when needed.</li>
+</ul></li>
+<li>RRS
+
+<ul>
+<li>Reduced Redundancy Storage: dùng để lưu trữ các data có thể generate ra được ? ( Ví dụ thumbnail của ảnh &#x2026;)</li>
+</ul></li>
+<li>Glacier:
+
+<ul>
+<li>Dùng để lưu archieved datas, mấy vài tiếng đến vài ngày để lấy được data.</li>
+</ul></li>
+</ul>
+
+<p><a id="charge"></a></p>
+
+<h3 id="charge">Charge</h3>
+
+<ul>
+<li>Storage</li>
+<li>Number of requests</li>
+<li>Storage management pricing ( phí quản lý các loại data theo tag &#x2026;)</li>
+<li>Data transfer pricing</li>
+</ul>
+
+<ol>
+<li><p>S3 transfer acceleration</p>
+
+<ul>
+<li>Sử dụng các server cloudfront phân tán để tăng tốc tộ upload file của
+người dùng.</li>
+</ul></li>
+</ol>
+
+<p><a id="version-controlling"></a></p>
+
+<h3 id="version-controlling">Version controlling</h3>
+
+<ul>
+<li>Store all versions of objects</li>
+<li>Can&rsquo;t be disabled, only suspended</li>
+<li>Can use MFA mutil-factor authentication when deleting.</li>
+</ul>
+
+<p><a id="replication"></a></p>
+
+<h3 id="replication">Replication</h3>
+
+<ul>
+<li>Version control must be enabled in both buckets</li>
+<li>Only new or changed files is copied.</li>
+<li>Permission not copied</li>
+</ul>
+
+<p><a id="security-and-encryption"></a></p>
+
+<h3 id="security-and-encryption">Security and encryption</h3>
+
+<ol>
+<li><p>Bucket policy</p>
+
+<p>Policy cho toàn bộ object trong bucket</p></li>
+
+<li><p>Access Control List ACL</p>
+
+<ul>
+<li>Policy cho từng object riêng biệt trong bucket hoặc cho cả bucket</li>
+</ul></li>
+
+<li><p>Encryption</p>
+
+<ol>
+<li><p>In transit</p></li>
+
+<li><p>Mã hoá trong khi truyền dữ liệu sử dụng ssl/tls</p></li>
+
+<li><p>At rest</p></li>
+
+<li><p>Server side</p>
+
+<ul>
+<li>SSE-S3</li>
+<li>SSE-KMS</li>
+<li>SSE-C
+<br /></li>
+</ul></li>
+
+<li><p>Client side You encrypt your files and upload to S3.</p></li>
+</ol></li>
+</ol>
+
+<p><a id="cloudfront---cdn"></a></p>
+
+<h2 id="cloudfront-cdn">Cloudfront - CDN</h2>
+
+<p>Cache dữ liệu tại 50 edge location trên thế giới giúp giảm độ trễ.</p>
+
+<p><a id="storage-gateway"></a></p>
+
+<h2 id="storage-gateway">Storage gateway</h2>
+
+<ul>
+<li>Valid configuration type:
+
+<ul>
+<li>Gateway-cached volumes</li>
+<li>gateway-stored volumes</li>
+<li>Gateway-virtual tape library</li>
+</ul></li>
+</ul>
+
+<p><a id="ec2-1"></a></p>
+
+<h2 id="ec2-1">EC2</h2>
+
+<p><a id="options"></a></p>
+
+<h3 id="options">Options</h3>
+
+<ul>
+<li>On Demand: trả tiền theo từng giờ ( windows instance) hoặc từng giây
+( linux instance)
+
+<ul>
+<li>Tự scale vào 1 khoảng thời gian nhất định</li>
+</ul></li>
+<li>Reserverd: Đặt trước với capacity reservation, bằng cách ký hợp đồng
+1 hoặc 3 năm.
+
+<ul>
+<li>Giảm giá cho từng giờ sử dụng.</li>
+</ul></li>
+<li>Spot: Cho phép chọn giá mà bạn muốn cho instance capacity -&gt; giúp tiết kiệm
+
+<ul>
+<li>Ví dụ một bệnh viện có nhiều dữ liệu nhưng muốn giảm cost và cho thống kê chạy trong khoảng 0am-4am =&gt; Đấu giá</li>
+<li>Nếu tự terminate EC2 thì sẽ phải trả luôn cả giờ làm tròn (2h30 thì coi như đến 3h)</li>
+<li>Nhưng nếu EC2 bị terminate do giá cao hơn giá bid thì sẽ chỉ phải trả 2h
+
+<ul>
+<li>Spot nghĩa là tập trung 1 điểm nào đó nếu như ứng dụng của bạn có flexible start and end times.</li>
+</ul></li>
+</ul></li>
+<li>Dedicated hosted: host được tạo ra để dùng riêng cho bạn.
+
+<ul>
+<li>Sử dụng các liencse có sẵn</li>
+<li>Sử dụng các server có sắn</li>
+</ul></li>
+<li>Different types of virtualization available on EC2
+
+<ul>
+<li>Para-Virtual (PV) and Hardware Virtual Machine (HVM)</li>
+</ul></li>
+</ul>
+
+<p><a id="instance-types"></a></p>
+
+<h3 id="instance-types">Instance types</h3>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Family</th>
+<th scope="col" class="org-left">Speciality</th>
+<th scope="col" class="org-left">Usecase</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">D2</td>
+<td class="org-left">Dense Storage</td>
+<td class="org-left">FileServer, DataWareHouse, Hadoop</td>
+</tr>
+
+
+<tr>
+<td class="org-left">R4</td>
+<td class="org-left">Memory Optimized</td>
+<td class="org-left">Memory Extensive Apps</td>
+</tr>
+
+
+<tr>
+<td class="org-left">M4</td>
+<td class="org-left">General purpose</td>
+<td class="org-left">Application Server</td>
+</tr>
+
+
+<tr>
+<td class="org-left">C4</td>
+<td class="org-left">Computed Optimized</td>
+<td class="org-left">Cpu extensive app</td>
+</tr>
+
+
+<tr>
+<td class="org-left">G2</td>
+<td class="org-left">Graphics Intensive</td>
+<td class="org-left">Video encoding, 3d Application streaming</td>
+</tr>
+
+
+<tr>
+<td class="org-left">I2</td>
+<td class="org-left">High speed storage</td>
+<td class="org-left">NoSQL DB, Datawarehouse</td>
+</tr>
+
+
+<tr>
+<td class="org-left">F1</td>
+<td class="org-left">Field programable gate array</td>
+<td class="org-left">Hardware acceleration for your code</td>
+</tr>
+
+
+<tr>
+<td class="org-left">T2</td>
+<td class="org-left">Low cose, general purpose</td>
+<td class="org-left">Webserver, small DBs</td>
+</tr>
+
+
+<tr>
+<td class="org-left">P2</td>
+<td class="org-left">Graphic, general purpose GPUs</td>
+<td class="org-left">Machine learning, bitcoin mining</td>
+</tr>
+
+
+<tr>
+<td class="org-left">X1</td>
+<td class="org-left">Memory optimized</td>
+<td class="org-left">Apache SPARK&#x2026;</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>DR MC GIFT PX</p>
+</blockquote>
+
+<p><a id="ebs"></a></p>
+
+<h3 id="ebs">EBS</h3>
+
+<ul>
+<li>GP2: General Purpose SSD
+
+<ul>
+<li>IOPS: 3 -&gt; 10000, burst up to 3000</li>
+</ul></li>
+<li>Provisioned IOPS SSD
+
+<ul>
+<li>Sử dụng cho các ứng dụng sử dụng nhiều IO như large relational database or NoSQL database</li>
+<li>IOPS: &gt; 10000</li>
+</ul></li>
+<li>Throughtput Optimized HDD (ST1)
+
+<ul>
+<li>Big data, data warehouse, log volumn &#x2026;</li>
+<li>Can&rsquo;t use as boot volumn</li>
+</ul></li>
+<li>Cold HDD
+
+<ul>
+<li>Sử dụng cho các workload thỉnh thoảng mới được sử dụng</li>
+<li>File server</li>
+<li>Can&rsquo;t use as boot volumn</li>
+</ul></li>
+<li>Magnetic
+
+<ul>
+<li>Volumn giá rẻ nhất mà có thể boot được</li>
+<li>Sử dụng cho workload thỉnh thoảng được sử dụng</li>
+<li>Một khi đã tạo thì không thay đổi được volumn</li>
+</ul></li>
+<li>Không thể encrypt boot volumn của các AMI default nhưng có thể
+encrypt cho các AMI mà mình tạo ra .</li>
+<li>You can&rsquo;t mount 1 EBS volume to multiple EC2 instances, instead use
+EFS</li>
+<li>Default thì EBS sẽ bị deleted khi Ec2 instance của nó bị terminated
+nhưng có thể lựa chọn để giữ lại được.
+
+<ul>
+<li>Turn off flag deleteOnTemination</li>
+</ul></li>
+</ul>
+
+<ol>
+<li><p>Thực hành, snapshot</p>
+
+<ul>
+<li>Muốn thay đổi AZ của volumn thì phải tạo snapshot -&gt; tạo volumn mới
+từ snapshot và thay đổi AZ của volumn này.</li>
+<li>Snapshot is stored in S3.
+
+<ul>
+<li>Phải stop instance thì mới tạo được snapshot</li>
+<li>Chụp snapshot từ lần thứ 2 sẽ nhanh hơn lần đầu do chỉ các phần thay
+đổi mới được copy.</li>
+<li>Tự động encrypt volume</li>
+<li>Có thể share các unencrypted snapshot cho các tài khoản AWS khác hoặc
+đăng public.</li>
+</ul></li>
+<li>Muốn tạo snapshot cho các ổ đãi RAID thì trước hết phải ngừng tất cả
+các thao tác IO rồi sau đó flush cache và terminate instace rồi mới
+tạo snapshot.</li>
+</ul></li>
+
+<li><p>Root volumne : EBS vs instance store</p>
+
+<ul>
+<li>Instance store - Ephemeral Storage : không thể bị stop. Một khi nó bị
+stop do underlying system (aws system) thì nó sẽ bị mất hết dữ liệu.</li>
+<li>EBS có thể stop mà không mất dữ liệu.</li>
+<li>Cả 2 đều có thể reboot mà ko mất dữ liệu.</li>
+<li>Thông thường cả 2 sẽ mất dữ liệu khi bị terminated nhưng EBS cho phép
+lựa chọn giữ lại dữ liệu trong root volume.</li>
+<li>EBS volume được tạo ra từ EBS snapshot</li>
+<li>Instance volume được tạo ra từ template stored trong S3</li>
+</ul></li>
+</ol>
+
+<p><a id="security-groups"></a></p>
+
+<h3 id="security-groups">Security groups</h3>
+
+<ul>
+<li>Có thể add security groups vào 1 ec2 instance.</li>
+<li>Stateful: Khi bạn add 1 inbound rule thì nó sẽ tự động add outbound
+rule tương ứng</li>
+<li>Có thể cài đặt các allow rule nhưng không thể tạo ra các deny rule
+
+<ul>
+<li>Sử dụng network access list trong VPC</li>
+</ul></li>
+<li>Mỗi Security group chỉ tồn tại trong 1 region? // Cần confirm</li>
+</ul>
+
+<p><a id="network-and-security"></a></p>
+
+<h3 id="network-and-security">Network and security</h3>
+
+<ol>
+<li><p>Key pairs</p>
+
+<ul>
+<li>Hiển thị các key pair ssh</li>
+</ul></li>
+</ol>
+
+<p><a id="elb---elastic-load-balancer"></a></p>
+
+<h3 id="elb-elastic-load-balancer">ELB - Elastic Load Balancer</h3>
+
+<ul>
+<li>Phải để security group cho các node open thì load balancer mới
+checkhealth đượckj.</li>
+</ul>
+
+<ol>
+<li><p>Application Load Balancer</p>
+
+<ul>
+<li>LB ở tầng thứ 7, Application Layer.</li>
+<li>Mới xuất hiện</li>
+<li>Hiệu quả tốt hơn Classic Load Balancer</li>
+<li>Có thể thêm target group để chỉ định protocol và port mà muốn tạo
+load balancing</li>
+</ul></li>
+
+<li><p>Classic load balancer</p>
+
+<ul>
+<li>Hoặc động ở tầng thứ 4, TCP Layer</li>
+<li>Load balancer protocol: Là giao thức để chuyển balancing cho các node</li>
+</ul></li>
+</ol>
+
+<p><a id="ec2-instance-meta-data"></a></p>
+
+<h3 id="ec2-instance-meta-data">EC2 instance meta-data</h3>
+
+<ul>
+<li>SSH vào instance và curl đến đia chỉ
+<code>http://196.254.196.254/latest/meta-data/</code> để lấy meta của instance .</li>
+</ul>
+
+<p><a id="bootstrap-scrip"></a></p>
+
+<h3 id="bootstrap-scrip">Bootstrap scrip</h3>
+
+<ul>
+<li>Khi launch 1 instace</li>
+<li>Configure detail -&gt; Advanced detail -&gt; User data -&gt; paste bootstrap
+scrip into here.</li>
+</ul>
+
+<p><a id="auto-scaling"></a></p>
+
+<h3 id="auto-scaling">Auto-scaling</h3>
+
+<ul>
+<li>Create auto-scaling group
+
+<ul>
+<li>Tạo autoscaling group template: là template của các instance được tạo
+thêm để scaling
+
+<ul>
+<li>Nhấn vào sẽ đi đến chỗ cấu hình 1 ec2 instance giống với khi launch 1 instance</li>
+</ul></li>
+<li>Group size: số instance được tạo ra ban đầu</li>
+<li>Subnet: các AZ được sử dụng để tạo các instace khi auto-scaling</li>
+<li>Load balancer: Thêm các instace được tạo ra để scaling vào 1 nhóm
+load balancer</li>
+</ul></li>
+<li>Auto-scaling policy
+
+<ul>
+<li>Khi nào thì thêm instance</li>
+</ul></li>
+</ul>
+
+<p><a id="elastic-file-system-efs"></a></p>
+
+<h3 id="elastic-file-system-efs">Elastic File System EFS</h3>
+
+<ul>
+<li>Is a file storage service for EC2.</li>
+<li>Tự tăng giảm kích thước khi thêm hoặc xoá files.</li>
+<li>Data được lưu cross trong các AZ của 1 region.</li>
+
+<li><p>Block base storage ( S3: object base storage)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">Giúp việc lưu giữ file ( thuường là server file) được tập trung lại 1 nơi</pre></td></tr></table>
+</div>
+</div></li>
+
+<li><p>EFS : nhiều instances cso thể mount vào 1 EFS. EBS: chỉ 1 instance có
+thể mount vào 1 EBS</p></li>
+</ul>
+
+<p><a id="orgd415acf"></a></p>
+
+<h3 id="eni-elastic-network-interface">ENI - Elastic Network Interface</h3>
+
+<ul>
+<li>is a logical networking component in a VPC that represents a virtual network card.</li>
+</ul>
+
+<p><a id="lambda"></a></p>
+
+<h3 id="lambda">LAMBDA</h3>
+
+<ul>
+<li>Là nơi bạn upload code và AWS sẽ lo tất cả về phần server. Chỉ cần
+tạo event trigger.</li>
+<li>Phù hợp cho các service event-driven</li>
+<li>Xử lí các response từ API gateway hoặc các api call từ AWS SDKs.</li>
+<li>LAMBDA có thể trigger các lambda khác hoặc các service khác của AWS
+SDKs.</li>
+<li><strong>Mỗi 1 xử lý cho 1 event là 1 instance của LAMDA. Các instances của
+lambda có thể ở các AZ hoàn toàn khác nhau.</strong></li>
+<li>Tự scale -&gt; không cần quan tâm về Elastic Load Balancer &#x2026;</li>
+</ul>
+
+<ol>
+<li><p>Thực hành</p>
+
+<ul>
+<li>From scratch:</li>
+<li>Runtime: C#, Python, Java, Go, Nodejs</li>
+<li>Một function không thể có thời gian xử lý quá 5p. Nếu quá phải break
+ra thành nhiều function và cho chúng gọi lẫn nhau.</li>
+<li>Sử dụng AWS-XRay để debug Lambda</li>
+</ul></li>
+</ol>
+
+<p><a id="api-gateway"></a></p>
+
+<h2 id="api-gateway">API gateway</h2>
+
+<ul>
+<li>Enable CORS on method/resource ??
+
+<ul>
+<li>Mục đích là gì?</li>
+</ul></li>
+<li>API key and usage plans??</li>
+<li>Phải config endpoint cho phía client trùng với endpoint của API
+gateway</li>
+</ul>
+
+<p><a id="lamda"></a></p>
+
+<h2 id="lamda">Lamda</h2>
+
+<ul>
+<li>Change lambda role to role containing &ldquo;cdaLambdaRole&rdquo;</li>
+<li>Execution role?</li>
+<li>Ensure Lambda can post to DynamoDB</li>
+<li>Configure SQS for anyone to post to queue</li>
+</ul>
+
+<p><a id="route-53"></a></p>
+
+<h2 id="route-53">Route 53</h2>
+
+<ul>
+<li>By default, Amazon DNS khong response lai cac request tu ben ngoai
+VPC</li>
+</ul>
+
+<p><a id="dns"></a></p>
+
+<h3 id="dns">DNS</h3>
+
+<ol>
+<li><p>Exam notes</p>
+
+<ul>
+<li>ELB do not have pre-defined IPv4 address, you resolve to them using a
+DNS Name</li>
+</ul></li>
+
+<li><p>Concepts</p>
+
+<ul>
+<li>Top level domains: The last word in a domain name.
+
+<ul>
+<li>Ex: .com, .edu, .gov&#x2026;</li>
+</ul></li>
+<li>The second level domain name: The the second word in domain name
+
+<ul>
+<li>Ex: .co (.co.uk), .gov (.gov.uk)</li>
+</ul></li>
+<li>The top level domain names are controlled by IANA (Internet Assigned
+Numbers Authority) in a root zone database which consitent all
+available top domain names.
+
+<ul>
+<li><a href="http://www.iana.org/domains/root/db">http://www.iana.org/domains/root/db</a></li>
+</ul></li>
+<li>Domain registrars
+
+<ul>
+<li>A registra is an authority that can assign domain names under one or
+more top-level domain names.</li>
+<li>Each domain is registered in a central database called WhoIS
+database.</li>
+</ul></li>
+<li>SOA Records</li>
+<li>NS Records</li>
+<li>A Record: Used by computer to translate the name of the domain to the
+IP address.</li>
+<li>TTL: Time to Live
+
+<ul>
+<li>The length that a DNS Record is cached in Resolving Server or users
+own local PC</li>
+<li>When you go to a website, your PC is going to check whether or not it
+has that address in cache. If not it is going to the DNS resolving
+server.</li>
+</ul></li>
+<li>CNAMES: A Conanical Name
+
+<ul>
+<li>Map a domain to another domain name.</li>
+<li>CNAME can&rsquo;t be used for naked domain names (domain that doesn&rsquo;t have
+&lsquo;www&rsquo;), it must be an A record or an alias.</li>
+</ul></li>
+<li>Alias records:</li>
+<li>Work like a CNAME record in that you can map one DNS name to another
+&lsquo;target&rsquo; DNS name.</li>
+</ul></li>
+</ol>
+
+<p><a id="routing-policies"></a></p>
+
+<h3 id="routing-policies">Routing policies</h3>
+
+<ol>
+<li>Simple</li>
+<li>Weighted</li>
+<li>Latency</li>
+<li>Failover</li>
+<li>Geolocation</li>
+</ol>
+
+<p><a id="org81268b0"></a></p>
+
+<h2 id="database-101">Database 101</h2>
+
+<p><a id="orgcbf085e"></a></p>
+
+<h3 id="exam-tips">Exam tips</h3>
+
+<ul>
+<li>Get free storage AP: getStorageSpace</li>
+</ul>
+
+<p><a id="orga4df95f"></a></p>
+
+<h3 id="notes-1">Notes</h3>
+
+<ul>
+<li>RDS - Online transaction processing - OLTP
+
+<ul>
+<li>SQL</li>
+<li>Mysql</li>
+<li>PostgreSQL</li>
+<li>Oracle</li>
+<li>Aurora
+
+<ul>
+<li>6 copies of my date are stored by default.</li>
+</ul></li>
+<li>MariaDB</li>
+<li>Maximum backup retention period: 35days.</li>
+<li>Automated backups are enabled by default for a new DB instance.</li>
+<li>RDS does not currently support increasing storage on a SQL Servce DB
+instance.</li>
+<li>in RDS, changes to the backup window take effect immediately</li>
+</ul></li>
+<li>DynamoDB - NoSQL
+
+<ul>
+<li>Can not select a specific AZ in which to plce your DynamoDB table</li>
+</ul></li>
+<li>Redshift - OLAP - Online analysis processing
+
+<ul>
+<li>Copy production DB and run analysis queries in copied DB so it doesn&rsquo;t harm the production DB.</li>
+<li>The combined Value, Name must not exceed 400KB</li>
+</ul></li>
+</ul>
+
+<p><a id="org3b34c63"></a></p>
+
+<h3 id="multi-az-read-replicas">Multi-AZ Read replicas</h3>
+
+<p>Two types of backups: Automated backup, Database Snapshots</p>
+
+<ul>
+<li>Automated backup
+
+<ul>
+<li>Enabled by default</li>
+<li>Stored in S3, you get free storage space equal to the size of the DB</li>
+<li>Deleted when RDS is deleted</li>
+</ul></li>
+<li>Snapshot - Stored even after original RDS instances is deleted.</li>
+<li>Restored version of RDS will be a new RDS instance with new DNS endpoint.</li>
+<li>Multi-AZ
+
+<ul>
+<li>Disaster Recovery only.</li>
+<li>Have a extracy copy of your production DB in another AZ.</li>
+<li>AWS handles the replication for you so when your DB is written to this write
+will automatically be synchronized to the stand by database.</li>
+</ul></li>
+<li>Replicas
+
+<ul>
+<li>Improve performance.</li>
+<li>Allow you to have a read-only copy of production DB.</li>
+<li>Use read replicas primarily for very read-heavy database workloads.</li>
+<li>Maximum 5 replicas</li>
+<li>Cloudwatch should watch getReplicaLag</li>
+</ul></li>
+</ul>
+
+<p><a id="org2ac98e2"></a></p>
+
+<h3 id="dynamodb">DynamoDB</h3>
+
+<p><a id="org30d50e3"></a></p>
+
+<h3 id="redshift">Redshift</h3>
+
+<ul>
+<li>ppppppppDatawarehouse</li>
+<li>Columnar storage</li>
+<li>Advanced compression</li>
+<li>MPP: Massively parallel processing: automatically distributes datas and
+query across all nodes.</li>
+<li>Charge:
+
+<ul>
+<li>Compute node hours</li>
+<li>Backup</li>
+<li>Data transfer</li>
+</ul></li>
+<li>Currently only avaiable in 1 AZ</li>
+<li>Can restore to new AZ</li>
+<li>Block size for its columnar storage: 1024KB / 1MB</li>
+</ul>
+
+<p><a id="orgabcf9cd"></a></p>
+
+<h3 id="elasticcache">ElasticCache</h3>
+
+<ul>
+<li>Webservice makes it easy to deploy, operate, slace in in-memory cache in the
+cloud.
+
+<ul>
+<li>Support two open-source in-memory caching engines:
+
+<ul>
+<li>Memcached
+
+<ul>
+<li>Memory object caching system.</li>
+</ul></li>
+<li>Redis
+
+<ul>
+<li>Opensource in-memory key-value store that supports datastructure such as
+sorted sets and lists.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><a id="vpc"></a></p>
+
+<h2 id="vpc">VPC</h2>
+
+<ul>
+<li>Each regions -&gt; max 5 VPCs</li>
+<li>Automatically created:
+
+<ul>
+<li>Route table</li>
+<li>Network ALC (Access control list)
+
+<ul>
+<li>Stateless
+
+<ul>
+<li>Inbound rule va outbound rules rieng biet</li>
+</ul></li>
+</ul></li>
+<li>Security group
+
+<ul>
+<li>All outbound traffic is allowed by default</li>
+</ul></li>
+</ul></li>
+<li>Network address translation (NAT)
+
+<ul>
+<li>NAT instance
+
+<ul>
+<li>Disable source/destination check</li>
+<li>Must be in public subnet</li>
+<li>Route out of the private subnet to NAT instance</li>
+<li>Traffic depends on NAT instance size.</li>
+<li>Associate with security group</li>
+<li>Have to disable Source/Destination Checks</li>
+</ul></li>
+<li>NAT gateway
+
+<ul>
+<li>Auto scale to 10Gps</li>
+<li>Not associate with security group</li>
+<li>Automatic assigned public IP</li>
+<li>More secure than NAT instance</li>
+</ul></li>
+</ul></li>
+<li>Network ACL
+
+<ul>
+<li>Can associate ACl with multiple subnets</li>
+<li>If don&rsquo;t, subnet automatically associated with default ACL</li>
+<li>A subnet can associate with one ACL, one ACL can associated with multiple
+subnets.</li>
+<li>Contains number of rules in order and evaluated starting from lowest value.</li>
+</ul></li>
+</ul>
+
+<p><a id="sqs"></a></p>
+
+<h2 id="sqs">SQS</h2>
+
+<ul>
+<li>Pull based system</li>
+<li>Messages size is 256KB</li>
+<li>Messages kept in queue 1 minute to 14 days
+
+<ul>
+<li>Default is 4 days</li>
+</ul></li>
+<li>Visibily time out is the amount of time after the reader picks up the  message.
+
+<ul>
+<li>Max is 12 hours</li>
+<li>If the message is processed by provided job then the message will be deleted.</li>
+<li>If not, the message is visible again and another process will process it
+
+<ul>
+<li>This results the same message being delivery twice</li>
+</ul></li>
+</ul></li>
+<li>SQS is pull based, not push based.</li>
+<li>Messages are 256kB size</li>
+<li>Messages can be kept in queue from 1 minut to 14 days. Default is 4 days.</li>
+<li>Visibility Time out is the amount of time that the message is invisible in SQS queue after a reader picks up the message. If the reader processed before the the visibility time out expires, the message wil be deleted. If not, the message will be came visibility again and another process will process it. This could result the same message is processed twice.</li>
+<li>SQS ensures that a message will be processed at least once.</li>
+<li>Long polling:
+
+<ul>
+<li>Not return a response if the message queue being polled is empty</li>
+<li>Return a response when a message arrives in the message queue. Or the long poll times out.</li>
+</ul></li>
+<li>Can&rsquo;t be FIFO.</li>
+</ul>
+
+<p><a id="swf"></a></p>
+
+<h2 id="swf">SWF</h2>
+
+<ul>
+<li>Task oriented queue</li>
+<li>Ensure task is assigned only once and is never duplicated.</li>
+<li>Workflow starters: Start a workflow.</li>
+<li>Deciders: Control flow of activity task in workflow execution.
+
+<ul>
+<li>If something has finished in workflow or failed, Deciders decides what to do next.</li>
+</ul></li>
+<li>Acitivity workers: Carry out the activity tasks.</li>
+</ul>
+
+<p><a id="elastic-transcode"></a></p>
+
+<h2 id="elastic-transcode">Elastic transcode</h2>
+
+<ul>
+<li>Jobs, pipelines, presets, notifications</li>
+<li>Convert file type</li>
+</ul>
+
+<p><a id="kinesis"></a></p>
+
+<h2 id="kinesis">Kinesis</h2>
+
+<p>Is a platform in AWS allow you to send streaming data. Make it easy to
+load and analyze data.</p>
+
+<p><a id="kinesis-stream"></a></p>
+
+<h3 id="kinesis-stream">Kinesis stream</h3>
+
+<ul>
+<li>(PC, SP, Ec2)</li>
+<li>-&gt; (Kinesis Stream): Store data in shards for 24 by default and can
+be set to max 7 days</li>
+<li>-&gt; (Ec2): Consumers: Take the data and turn it to somthing useful.</li>
+</ul>
+
+<p><a id="kinesis-firehose"></a></p>
+
+<h3 id="kinesis-firehose">Kinesis Firehose</h3>
+
+<ul>
+<li>(PC, SP, Ec2)</li>
+
+<li><p>-&gt; (Kinesis Firehose):</p>
+
+<ul>
+<li>Don&rsquo;t worry about manually adding shard.</li>
+<li>Use lambda to analyze data in realtime.</li>
+<li>After analyzing you can send it to S3.</li>
+</ul></li>
+
+<li><p>-&gt; S3 / Redshift, ElasticSearch</p></li>
+</ul>
+
+<p><a id="kinesis-analytics"></a></p>
+
+<h3 id="kinesis-analytics">Kinesis Analytics</h3>
+
+<ul>
+<li>Allow you to run sequel queries then store into S3, Redshift,
+ElasticSearch cluster.</li>
+</ul>
+
+<p><a id="sns"></a></p>
+
+<h2 id="sns">SNS</h2>
+
+<p><a id="subcribers"></a></p>
+
+<h3 id="subcribers">Subcribers:</h3>
+
+<ul>
+<li>HTTP</li>
+<li>HTTPS</li>
+<li>Email</li>
+<li>Email-JSON</li>
+<li>SQS</li>
+<li>Application</li>
+<li>Lambda</li>
+</ul>
+
+<p><a id="well-architected"></a></p>
+
+<h2 id="well-architected">Well-architected</h2>
+
+<ol>
+<li><p>General design principles</p></li>
+
+<li><p>Stop guessing your capacity needs.</p></li>
+
+<li><p>Cloud scales automatically</p></li>
+
+<li><p>Testing systems at production scale</p></li>
+
+<li><p>Automate make architectual experimentation easier</p></li>
+
+<li><p>Allow for evolutionary architectures</p></li>
+
+<li><p>Data-driven architectures</p></li>
+</ol>
+
+<p><a id="security"></a></p>
+
+<h3 id="security">Security</h3>
+
+<ul>
+<li>Apply security at all levels</li>
+<li>Subnet, Access control list (ACL), &#x2026;</li>
+<li>Enable traceability</li>
+<li>Automatet responses to security events</li>
+<li>Automate security best practices</li>
+</ul>
+
+<ol>
+<li>Data protection</li>
+</ol>
+
+<p><a id="reliability"></a></p>
+
+<h3 id="reliability">Reliability</h3>
+
+<ul>
+<li>Realiability in the cloud consists of 3 aresas:</li>
+
+<li><p>Foundations</p>
+
+<ul>
+<li>How are you managing AWS service limits for your account?</li>
+<li>How are you planning your network topology on AWS</li>
+</ul></li>
+
+<li><p>Change management</p>
+
+<ul>
+<li>How to adapt to changes in demand</li>
+<li>How to monitor AWS resource</li>
+<li>How to execute change management</li>
+</ul></li>
+
+<li><p>Failure management</p>
+
+<ul>
+<li>How to backup data</li>
+<li>How to plan recovery</li>
+</ul></li>
+</ul>
+
+<p><a id="perfomance-effective"></a></p>
+
+<h3 id="perfomance-effective">Perfomance effective</h3>
+
+<ul>
+<li>Use server-less architectures</li>
+</ul>
+
+<p><a id="cost-optimization"></a></p>
+
+<h3 id="cost-optimization">Cost optimization</h3>
+
+<ul>
+<li>Matched supply and demand</li>
+<li>Autoscaling</li>
+<li>Cost-effective resources</li>
+<li>EC2 (reserved instanced - can moved to another region), AWS Trsuted
+Advisor</li>
+<li>Expenditure awareness</li>
+<li>Cloudwatch alamrs, SNS</li>
+<li>Optimizing over time</li>
+<li>AWS Blog, AWS Trusted Advisor</li>
+</ul>
+
+<p><a id="org3230a15"></a></p>
+
+<h2 id="elasticsearch">ElasticSearch</h2>
+
+<p><a id="org0aa5d1f"></a></p>
+
+<h3 id="nrt-gần-realtime-1-document-có-thể-được-indexed-và-searchable-trong-vòng-1s">NRT: Gần Realtime, 1 document có thể được indexed và searchable trong vòng 1s</h3>
+
+<p><a id="org5895bec"></a></p>
+
+<h3 id="cluster-1-tập-hợp-các-node">Cluster: 1 tập hợp các node</h3>
+
+<p><a id="org839af9c"></a></p>
+
+<h3 id="node-1-phần-của-cluster">Node: 1 phần của cluster</h3>
+
+<ul>
+<li>Lưu trữ data</li>
+<li>Tham gia vào quá trình index, search của cluster</li>
+<li>Join vào cluster bằng naming convention?</li>
+<li>1 cluster có thể có bn node tùy ý</li>
+</ul>
+
+<p><a id="orgd17a604"></a></p>
+
+<h3 id="index">Index:</h3>
+
+<ul>
+<li>1 collection của các document có thuộc tính tương tự nhau</li>
+<li>Có thể chứa vô hạn documents</li>
+</ul>
+
+<p><a id="orgee8e66c"></a></p>
+
+<h3 id="document">Document:</h3>
+
+<ul>
+<li>Đơn vị chưa thông tin có thể indexed được</li>
+<li>Lưu dưỡi dạng json</li>
+</ul>
+
+<p><a id="org4f4db18"></a></p>
+
+<h3 id="shards-replicas">Shards, Replicas:</h3>
+
+<ul>
+<li>Chia index ra các shards bởi vì nếu để vào 1 node thì kích thước index quá lớn hoặc mất quá nhiều tg đế lấy data cho 1 request</li>
+<li>1 shard là 1 đơn vị độc lập, full chức năng, và có thể được hosted ở any node</li>
+<li>Giúp tăng khả năng horizontally split or scale, parallelize operations across shards</li>
+<li>Replicas shards i.e Replicas là bản copy của shard để có thể fail over và parallelize</li>
+</ul>
+
+<p><a id="orgcc06046"></a></p>
+
+<h2 id="waf-web-application-firewall">WAF - Web Application Firewall</h2>
+
+<p><a id="org7d171bc"></a></p>
+
+<h2 id="復習">復習</h2>
+
+<p><a id="orgef32300"></a></p>
+
+<h3 id="exam-feedbacks">Exam feedbacks</h3>
+
+<p><a href="https://acloud.guru/forums/aws-certified-solutions-architect-associate/discussion/-L7uITWGWEI21g2BXL1_/Exam%20Feedback%20-%20SAA%20February%202018%20Edition">https://acloud.guru/forums/aws-certified-solutions-architect-associate/discussion/-L7uITWGWEI21g2BXL1_/Exam%20Feedback%20-%20SAA%20February%202018%20Edition</a>
+I also went through all recommended whitepapers and FAQs (EC2, S3, VPC, Route 53, RDS, SQS) at <a href="https://aws.amazon.com/certification/certification-prep">https://aws.amazon.com/certification/certification-prep</a>,</p>
+
+<p><a id="orga87e067"></a></p>
+
+<h3 id="todo-well-architected-framework">TODO Well-architected framework</h3>
+
+<ol>
+<li>Whitepaper presented in the Exam Blue Print</li>
+<li>Most cost-optimized</li>
+<li>Highly available system</li>
+<li>Security, cost</li>
+</ol>
+
+<p><a id="orgc5f5734"></a></p>
+
+<h3 id="done-redshift-code-5-6-code">DONE Redshift <code>[<sup>5</sup>&frasl;<sub>6</sub>]</code></h3>
+
+<ol class="task-list">
+<li>Surprising number of questions in this area</li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Perform encryption
+
+<ol>
+<li>Encryption property is immutable</li>
+<li>Setting when launching</li>
+<li>Changing have to unload data and reload with encryption setting</li>
+<li>Use AWS KMS or hardware security module to encrypt</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Cross-region backups/replication
+
+<ol>
+<li>Config to copy snapshot(automatic / manual) to another region.</li>
+<li>Automatic snapshot is deleted when reached the retention time period (can change and separate from source region - default 7 days)
+
+<ol>
+<li>Deleted when disable automatic snapshot copy</li>
+</ol></li>
+<li>Manual snapshot can only by manually deleted.</li>
+<li>Change destination: disable snapshot copy -&gt; re-enable and change destination region</li>
+<li>Transfer charges</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Disaster recovery of a cluster</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Review Redshift FAQs
+1.</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Try setup a cluster</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Security
+
+<ol class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Security group</label></li>
+</ol></label></li>
+</ol>
+
+<p><a id="org5f34a8d"></a></p>
+
+<h3 id="done-ebs-storage-code-4-4-code">DONE EBS Storage <code>[<sup>4</sup>&frasl;<sub>4</sub>]</code></h3>
+
+<ol class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Different storage solution (S3, EBS, EFS, EBS-Provisioned IOPS, ..)
+
+<ol>
+<li>How to implement and change theme</li>
+<li>Genral purpose</li>
+<li>Provisioned SSD</li>
+<li>Throughput optimized HDD</li>
+<li>Cold HDD</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Choosing the optimum (performance + cost) EBS storage solution</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> EBS vs storage gateway vs S3 vs RDS vs EFS
+
+<ol>
+<li>Read EFS FAQs</li>
+<li>AWS Storage Gateway connects on premise storage to the S3 repository.</li>
+<li>You can mount EFS onto several EC2 instances at the same time.</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Read FAQs</label></li>
+</ol>
+
+<p><a id="org1fe8924"></a></p>
+
+<h3 id="done-s3-code-5-6-code">DONE S3 <code>[<sup>5</sup>&frasl;<sub>6</sub>]</code></h3>
+
+<ul class="task-list">
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-26 Wed 00:04]</span></span></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Connect cloudfront
+
+<ol>
+<li>Create distribution</li>
+<li>Add s3 bucket as Origin Domain Name</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Connect VPC enpoints</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Hashing prefix for performance</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Lifecycle policies, tiers of storage?</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Read FAQs
+
+<ol>
+<li>Storage types: s3 - standard, s3 IA, s3 rrs, s3 one-zone is, glacier</li>
+<li>Price:
+
+<ol>
+<li>Transfer : Same region -&gt; no cost, otherwise charged</li>
+<li>Versioning: all version is summed up</li>
+<li>Access control: IAM policy, bucket policy, ACL, Query String Authencation</li>
+<li>Standard IA :
+
+<ol>
+<li>deleted from S3 Standard-IA within 30 days will be charged for a full 30 days.</li>
+<li>has a minimum object storage charge of 128KB. Objects smaller than 128KB in size will incur storage charges as if the object were 128KB.</li>
+<li>Glacier APIs to access objects that I’ve archived to Amazon Glacier? - Only accessible through the Amazon S3 APIs or the Amazon S3 Management Console.</li>
+</ol></li>
+<li>Query in place
+
+<ol>
+<li>S3 select</li>
+<li>Amazon Athena</li>
+<li>Redshift spectrum</li>
+</ol></li>
+<li>s3 noti
+
+<ol>
+<li>no cost</li>
+</ol></li>
+<li>s3 transfer acceleration</li>
+<li>Object tag</li>
+<li>Lifecycle
+
+<ol>
+<li>No cost</li>
+</ol></li>
+<li>Cross-region replication</li>
+</ol></li>
+</ol></label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Do labs</label></li>
+</ul>
+
+<p><a id="orgd5f9157"></a></p>
+
+<h3 id="done-storage-gateway-code-3-3-code">DONE Storage Gateway <code>[<sup>3</sup>&frasl;<sub>3</sub>]</code></h3>
+
+<ol>
+<li><p>DONE File gateway: using industry-standard file protocols</p>
+
+<ul>
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-26 Wed 00:46]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-26 Wed 00:46]</span></span></li>
+</ul></li>
+
+<li><p>DONE Volumn gateway: Can mount</p>
+
+<ul>
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-26 Wed 00:46]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-26 Wed 00:46]</span></span>
+<br /></li>
+</ul>
+
+<ol>
+<li><p>Cache volume:</p>
+
+<ul>
+<li>Retain a copy of frequently accessed data subsets locally
+<br /></li>
+</ul></li>
+
+<li><p>Stored volume</p>
+
+<ul>
+<li>store all your data locally and backup point-in-time to S3</li>
+<li>For example, if you need replacement capacity for disaster recovery, you can recover the backups to Amazon EC2.</li>
+<li>Inexpensive</li>
+</ul></li>
+</ol></li>
+
+<li><p>DONE Tape gateway:</p>
+
+<ul>
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-27 Thu 00:08]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-27 Thu 00:08] </span></span></li>
+<li>cost-effectively and durably archive backup data in Amazon Glacier</li>
+</ul></li>
+</ol>
+
+<p><a id="org5b9e453"></a></p>
+
+<h3 id="done-vpcs-subnets-peering-code-6-6-code">DONE VPCS/ Subnets / Peering <code>[<sup>6</sup>&frasl;<sub>6</sub>]</code></h3>
+
+<ul class="task-list">
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-18 Tue 23:24]</span></span></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Clear on VPC and networking concepts</label></li>
+
+<li><p>[X] VPC endpoints, Ec2 internet accessibility</p>
+
+<ul>
+<li>A VPC endpoint enables you to create a private connection between your VPC and another AWS service.</li>
+<li>Interface endpoint : is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service</li>
+<li>Gateway endpoint: A gateway endpoint is a gateway that is a target for a specified route in your route table, used for traffic destined to a supported AWS service</li>
+</ul></li>
+</ul>
+
+<ol class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> When traffic stays in VPC or goes over the public internet</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> VPC Flow Logs
+
+<ol>
+<li>Publishing Flow Logs to CloudWatch Logs / S3</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Security groups vs network ACLs: IP blacklist</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> VPC FAQs
+
+<ul>
+<li>Ex: How to keep private S3 connections when using VPNs</li>
+</ul></label></li>
+</ol>
+
+<p><a id="org0cae2da"></a></p>
+
+<h3 id="done-ec2-classes-code-5-5-code">DONE EC2 classes <code>[<sup>5</sup>&frasl;<sub>5</sub>]</code></h3>
+
+<ul class="task-list">
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-27 Thu 23:02]</span></span></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Convertible Standard reserved vs Reversed Instances
+
+<ol>
+<li><a href="https://aws.amazon.com/ec2/pricing/reserved-instances/">https://aws.amazon.com/ec2/pricing/reserved-instances/</a></li>
+<li>Convertible Standard reserved: cho phép thay đổi thuộc tính của reversed instance nhưng giá đắt hơn</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Spot vs spot block instances
+
+<ol>
+<li>Spot blocks: Spot Instances with a specified duration</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Do lab with EBS and find how to save file in EBS</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> classic ELB vs ALB, NLB (network load balancer) including cost
+
+<ol>
+<li>ALB: Layer 7: Have others informations like SSL, HTTPS, return code, http header reading</li>
+<li>NLB: Layer 4: It&rsquo;s just a connect</li>
+<li>Price: CLB &gt; ALB ~ NLB</li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> EC2 FAQs</label></li>
+</ul>
+
+<p><a id="orgcb72676"></a></p>
+
+<h3 id="done-rds-code-4-6-code">DONE RDS <code>[<sup>4</sup>&frasl;<sub>6</sub>]</code></h3>
+
+<ul class="task-list">
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 00:05]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-28 Fri 00:12]</span></span></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Optimizing DB performance</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Elasticcache, Replicas, Aurora
+
+<ul>
+<li>Elasticache
+
+<ul>
+<li>Key-value cache</li>
+</ul></li>
+<li>Replicas</li>
+<li>Aurora</li>
+</ul></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Cross regioni snapshot copying, read replicas
+
+<ul>
+<li>Can copy witin same region, across regions, across aws accounts
+
+<ul>
+<li>Copy auto snapshot across accounts:
+
+<ol>
+<li>Create manual snapshot from auto snapshot</li>
+<li>Copy manual snapshot to the other account.</li>
+</ol></li>
+<li>Copy across regions:
+
+<ul>
+<li>First copy is full copy</li>
+</ul></li>
+<li>Copy encrypt snapshot
+
+<ul>
+<li>Same region: use same KMS key or use new KMS key</li>
+<li>Across region: must create new KMS key because KMS key is region-specific</li>
+</ul></li>
+</ul></li>
+<li>Sharing snapshot
+
+<ul>
+<li>Both encrypted and uncrypted can be copied</li>
+<li>Uncrypted shared:
+
+<ul>
+<li>Can restore directly without copy</li>
+<li>Can copy across regions</li>
+</ul></li>
+<li>Encrypted shared:
+
+<ul>
+<li>Must copy and then restore from copy</li>
+<li>Must have access to the KMS key that used to encrypt
+
+<ul>
+<li>By sharing KMS key</li>
+</ul></li>
+<li>Can only copy it in same region</li>
+</ul></li>
+</ul></li>
+</ul></label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> What each DB specialized in</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> How encryption is done and what is used
+
+<ul>
+<li>Encrypt instance</li>
+<li>Data sent between source and replicas is encrypted</li>
+</ul></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> RDS FAQs</label></li>
+</ul>
+
+<p><a id="org89e4daa"></a></p>
+
+<h3 id="todo-setting-up-3-2-1-tier-web-application-code-0-3-code">TODO Setting up 3, 2, 1 Tier web application <code>[0/3]</code></h3>
+
+<ol class="task-list">
+<li><label><input type="checkbox" disabled class="task-list-item"> Knowing how to cost optimize</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Mix reserved instances and spot instances</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Different between Application ELB vs classic ELB, Ec2 reverse-proxy
+
+<ol>
+<li>Ec2 reverse-proxy</li>
+</ol></label></li>
+</ol>
+
+<p><a id="orgcdea899"></a></p>
+
+<h3 id="done-ecs-elastic-container-servicer-aws-beanstalk-code-3-4-code">DONE ECS - Elastic Container Servicer AWS Beanstalk <code>[<sup>3</sup>&frasl;<sub>4</sub>]</code></h3>
+
+<ul class="task-list">
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 12:46]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 12:46]</span></span></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> ECS
+
+<ul>
+<li>Task definition: This a blueprint that describes how a docker container should launch</li>
+<li>Task : This is a running container with the settings defined in the Task Definition.</li>
+<li>Service — Defines long running tasks of the same Task Definition</li>
+<li>Container Instance — This is just an EC2 instance</li>
+<li>Cluster — A logic group of EC2 instances</li>
+<li>Free</li>
+</ul></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Beanstalk
+
+<ul>
+<li>Beanstalk is much more of a Platform-As-A-Service (PaaS). You push your raw code to it and it handles setting up the services, deploying code, and controlling the environment.</li>
+<li>Free</li>
+</ul></label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> Split up processing jobs, non-critical batch component</label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Beanstalk vs CodeFormation vs CodeDeploy vs ElasticCache</label></li>
+</ul>
+
+<p><a id="orgafa0f68"></a></p>
+
+<h3 id="done-hybrid-architecture">DONE Hybrid Architecture:</h3>
+
+<ul>
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 13:45]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 13:45]</span></span></li>
+<li>VPN
+
+<ul>
+<li>You can enable access to your remote network from your VPC by attaching a virtual private gateway to the VPC</li>
+<li>A virtual private gateway is the VPN concentrator on the Amazon side of the VPN connection</li>
+</ul></li>
+</ul>
+
+<p><a id="org94116af"></a></p>
+
+<h3 id="done-lambda-api-gateway-code-2-2-code">DONE LAMBDA, APi gateway <code>[<sup>2</sup>&frasl;<sub>2</sub>]</code></h3>
+
+<ul class="task-list">
+<li>State &ldquo;REVIEW&rdquo;     from &ldquo;PROCESSING&rdquo; <span class="timestamp-wrapper"><span class="timestamp">[2018-09-30 Sun 01:09]</span></span></li>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 16:04]</span></span></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> Lamda Read FAQs
+
+<ol>
+<li>When you update a Lambda function, there will be a brief window of time, typically less than a minute, when requests could be served by either the old or the new version of your function.</li>
+<li>Limit for number of concurrent executions per account per region
+
+<ol>
+<li>Applied at an account level</li>
+</ol></li>
+<li>Multiple VPCs
+
+<ol>
+<li>Only by peering VPC</li>
+</ol></li>
+</ol></label></li>
+<li><label><input type="checkbox" checked disabled class="task-list-item"> API gateway
+
+<ol>
+<li>Amazon API Gateway does not support unencrypted (HTTP) endpoints</li>
+</ol></label></li>
+</ul>
+
+<p><a id="org95917f9"></a></p>
+
+<h3 id="todo-aws-config">TODO AWS Config</h3>
+
+<p><a id="org5481c52"></a></p>
+
+<h3 id="todo-nginx-apps">TODO NGINX apps</h3>
+
+<p><a id="org65e7014"></a></p>
+
+<h3 id="processing-aws-cognito">PROCESSING AWS Cognito</h3>
+
+<ul>
+<li>State &ldquo;PROCESSING&rdquo; from &ldquo;TODO&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2018-09-29 Sat 16:17]</span></span></li>
+<li>Authencation service</li>
+</ul>
+
+<p><a id="org9df6f68"></a></p>
+
+<h3 id="todo-aws-practice-exams">TODO AWS Practice exams</h3>
+
+  </div>
+</article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:nhs.000.dev@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/nhs012" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/sonnguyenhuu000/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nhs000/" class="iconfont icon-github" title="github"></a>
+  <a href="https://nhs000.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>nhs000</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

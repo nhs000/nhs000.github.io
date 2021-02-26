@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Tôi đã pass AWS SAA như thế nào - part 1 - nhs012 blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="nhs000" /><meta name="description" content="Động lực  Trang bị thêm kiến thức   Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt." />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
+
+
+<link rel="canonical" href="https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Tôi đã pass AWS SAA như thế nào - part 1" />
+<meta property="og:description" content="Động lực  Trang bị thêm kiến thức   Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/" />
+<meta property="article:published_time" content="2018-10-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-10-04T00:00:00+00:00" />
+<meta itemprop="name" content="Tôi đã pass AWS SAA như thế nào - part 1">
+<meta itemprop="description" content="Động lực  Trang bị thêm kiến thức   Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt.">
+
+
+<meta itemprop="datePublished" content="2018-10-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-10-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="782">
+
+
+
+<meta itemprop="keywords" content="aws,vietnamese," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tôi đã pass AWS SAA như thế nào - part 1"/>
+<meta name="twitter:description" content="Động lực  Trang bị thêm kiến thức   Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">nhs012 blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/posts/">
+        <li class="mobile-menu-item">Posts</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">nhs012 blog</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/posts/">Posts</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Tôi đã pass AWS SAA như thế nào - part 1</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-04 </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+    <aside>
+      <header>
+      <h4>Table of Content</h4>
+      </header>
+      <nav id="TableOfContents">
+<ul>
+<li><a href="#headline-1">Động lực</a>
+<ul>
+<li><a href="#headline-2">Trang bị thêm kiến thức</a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-3">Chuẩn bị </a>
+<ul>
+<li><a href="#headline-4">Account</a>
+</li>
+<li><a href="#headline-5">Khoá học + tài liệu </a>
+</li>
+<li><a href="#headline-6">Các resource khác </a>
+</li>
+</ul>
+</li>
+<li><a href="#headline-7">Dự thi </a>
+</li>
+<li><a href="#headline-8">Review đề thi </a>
+</li>
+<li><a href="#headline-9">Kết quả </a>
+</li>
+<li><a href="#headline-10">Kết luận </a>
+</li>
+</ul>
+</nav>
+    </aside>
+    
+    <div class="post-content">
+      
+<h1 id="headline-1">
+Động lực
+</h1>
+<h2 id="headline-2">
+Trang bị thêm kiến thức
+</h2>
+<p>
+Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. 
+Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt. Mà trên mạng mọi người cũng đánh giá cao trang này. Cũng do bắt đầu học cũng từ lâu nên đến giờ cũng không nhớ rõ lý do là gì lắm. Có thể là do trước đó 1 thời gian công ty mình có dùng lambda để làm 1 tính năng mới ( mà mình không được động tay vào tí nào :sad: ), lúc đấy mình gần như không có tí khái niệm gì về cloud hay aws, chỉ biết cỡ kiểu region là gì :)), nên mới quyết định học để lấy 1 cái chứng chỉ aws hẳn hỏi, vừa để bổ sung kiến thức vừa để thử thách bản thân. Hơn nữa theo mình thấy cũng như từ báo cáo mà amazon công bố thì mảng cloud ngày càng được dùng nhiều, trang bị cho mình kiến thức về mảng này là việc nên làm đối với 1 cu-đơ. 
+</p>
+<h1 id="headline-3">
+Chuẩn bị 
+</h1>
+<h2 id="headline-4">
+Account
+</h2>
+<p>
+Mình dùng free-tier của amz. Nó cung cấp miễn phí khá nhiều service, đủ nhu cầu để vọc vạch. Nhưng cũng nên chú ý là mình đang dùng những gì, bởi nếu dùng service không trong phạm vi của free-tier là tính phí đó nha. Có đợt mình tạo mấy cái trong VPC xong quên xoá, sau lên mười mấy $. Ôi xót :huhu: 
+</p>
+<h2 id="headline-5">
+Khoá học + tài liệu 
+</h2>
+<p>
+Như đã nói ở trên, mình bắt đầu khoá học của acloud từ khá lâu, chắc phải cỡ hơn nửa năm trước lận. Mà thực ra là mình học trên udemy chứ không phải chính chủ acloud, nhưng theo mình thấy nội dung là giống nhau, chẳng qua vì bên chính chủ nó yêu cầu thẻ visa mà mình thì không có (mà hồi đấy thì mới sang làm gì đã làm được thẻ :P), may mà có bên udemy cho thanh toán  line pay cứu cánh, hơn nữa lại còn sale từ 130$ xuống 12$ thì tội gì không quất :v. 
+</p>
+<p>
+Thực ra thì sau này mình mới biết là bên linuxacademy khoá học có vẻ chất lượng tốt hơn, và được cho mượn account để thực hành luôn ( cái này rất hay). Nếu có lần sau có thể mình sẽ học bên này.
+</p>
+<h2 id="headline-6">
+Các resource khác 
+</h2>
+<p>
+<a href="https://acloud.guru/forums/aws-certified-solutions-architect-associate/discussion/-L7uITWGWEI21g2BXL1_/Exam%2520Feedback%2520-%2520SAA%2520February%25202018%2520Edition">Review</a> về kì thi aws saa mới của học viên acloud. Dựa vào những review này, mình lập 1 list các dạng câu hỏi sẽ ra trong đề thi SAA mới. 
+</p>
+<h1 id="headline-7">
+Dự thi 
+</h1>
+<p>
+tobe cont… TODO in part 2 XD
+</p>
+<h1 id="headline-8">
+Review đề thi 
+</h1>
+<p>
+Đề thi gồm 65 câu, làm trong 130p. Trước đi thi mình cũng không tìm hiểu xem có bao nhiêu câu luôn :v, chỉ biết là thời gian làm bài 130p. Vào làm thì nó
+</p>
+<h1 id="headline-9">
+Kết quả 
+</h1>
+<p>
+Thực ra về độ khó thì mình nghĩ chỉ ngang ngang 1 môn học ở đại học hoặc cỡ như thi N thôi, chăm chỉ ôn là đỗ. Nhưng để kết quả cao cỡ 95%~ thì chắc phải thêm phần thực hành, đem những kiến thức mình học vào dựng 1 hệ thống thực tế. Bởi vì mình không có tiền :&#39;(, nên là mình học chay là chính, thỉnh thoảng mới động vào thực hành, với lại cũng mong muốn là thi càng sớm càng tốt nên có phần hơi ẩu đả. May mà trời thương cho đỗ. 
+Nhưng mà vì lí do đấy cho nên trong phần chia điểm theo các hạng mục của mình, tất cả đều đạt chuẩn, riêng phần cost optimize thì không :sad:. Cũng may là phần này chỉ chiếm 10% điểm. Nhưng theo mình nghĩ thì phần này là 1 trong những phần quan trọng nhất, bởi vì doanh nghiệp thì càng tiết kiệm được bao nhiêu càng tốt mà, đúng không? 
+</p>
+<p>
+Điểm mình: 810 :shame: 
+</p>
+<p>
+Điểm pass: 720/1000
+</p>
+<p>
+Có 65 câu, nên khoảng 15 điểm 1 câu, mình thừa khoảng 6 câu =)). Mức điểm hơi khiêm tốn.
+</p>
+<h1 id="headline-10">
+Kết luận 
+</h1>
+<p>
+Đề thi không quá khó, nếu chịu ôn thì có thể đậu tương đối dễ.
+</p>
+<p>
+Anh em có thời gian thì có thể học rồi kiếm thử cái cert đem khoe cho oai, như mình này =)). Mặc dù lúc sếp mình biết mình pass thì chẳng biểu hiện gì.
+</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">nhs000</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-10-04
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/aws/">aws</a>
+          <a href="/tags/vietnamese/">vietnamese</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/posts/tech/2019-02-02-run-jupyter-notebook-online/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Run jupyter notebook online with AWS EC2</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/posts/tech/2018-09-30-aws-prepare/">
+            <span class="next-text nav-default">AWS prepare</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:nhs.000.dev@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/nhs012" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/sonnguyenhuu000/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nhs000/" class="iconfont icon-github" title="github"></a>
+  <a href="https://nhs000.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>nhs000</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
