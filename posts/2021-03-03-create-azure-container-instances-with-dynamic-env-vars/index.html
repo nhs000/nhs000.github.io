@@ -60,7 +60,7 @@ Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&
 
 <meta itemprop="datePublished" content="2021-03-03T15:30:14&#43;07:00" />
 <meta itemprop="dateModified" content="2021-03-03T15:30:14&#43;07:00" />
-<meta itemprop="wordCount" content="296">
+<meta itemprop="wordCount" content="297">
 
 
 
@@ -287,7 +287,7 @@ Also, we can specify the necessary <code>environment variables</code> here.</p>
 </div>
 <h1 id="thoughts-and-conclusion">Thoughts and conclusion</h1>
 
-<p>I was very struggle to find any resouces or example of using Typescript with Container group SDK as well as Azure SDK in general. So I had to investigate the source code of the library and spent a lot of time for searching on the Internet to get the job done. So I decided to write this blog with the hope that it will help someone who has the same problem.</p>
+<p>I was very struggle to find any resouces or example of using Typescript with Container group SDK as well as Azure SDK in general. So I had to investigate the source code of the library and spent a lot of time for searching on the Internet to get the job done, that makes me decided to write this blog with the hope that it will help someone who has the same problem.</p>
 
 <p>A downside of this approach is that, for each request of updating environment variables, we need to create a new container instance group because currently Azure doesn&rsquo;t support to update the information on the fly (<a href="https://github.com/MicrosoftDocs/azure-docs/issues/31168">link</a>).</p>
 
