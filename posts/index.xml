@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>nhs000</copyright>
-    <lastBuildDate>Wed, 24 Feb 2021 14:22:19 +0700</lastBuildDate>
+    <lastBuildDate>Wed, 03 Mar 2021 15:30:14 +0700</lastBuildDate>
     
 	<atom:link href="https://nhs000.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Create Azure Container Instances with dynamic environment variables</title>
+      <link>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</link>
+      <pubDate>Wed, 03 Mar 2021 15:30:14 +0700</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</guid>
+      <description>This is an example for creating Azure container groups with enviroment variables using Typescript.
+Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodeauth&amp;quot; library to do the authentication using service principal.
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group.</description>
+    </item>
     
     <item>
       <title>Receive Protobuf Message From GCP Pubsub</title>

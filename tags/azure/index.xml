@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>azure on nhs012 blog</title>
+    <link>https://nhs000.github.io/tags/azure/</link>
+    <description>Recent content in azure on nhs012 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>nhs000</copyright>
+    <lastBuildDate>Wed, 03 Mar 2021 15:30:14 +0700</lastBuildDate>
+    
+	<atom:link href="https://nhs000.github.io/tags/azure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create Azure Container Instances with dynamic environment variables</title>
+      <link>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</link>
+      <pubDate>Wed, 03 Mar 2021 15:30:14 +0700</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</guid>
+      <description>This is an example for creating Azure container groups with enviroment variables using Typescript.
+Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodeauth&amp;quot; library to do the authentication using service principal.
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group.</description>
+    </item>
+    
+  </channel>
+</rss>
