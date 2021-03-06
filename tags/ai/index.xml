@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>AI on nhs000 blog</title>
@@ -18,7 +18,8 @@
       <pubDate>Sat, 15 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/</guid>
-      <description>Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.</description>
+      <description>Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D
+Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?  Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.</description>
     </item>
     
   </channel>

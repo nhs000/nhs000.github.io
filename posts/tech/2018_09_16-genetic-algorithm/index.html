@@ -16,14 +16,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="nhs000" /><meta name="description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương." />
+<meta name="author" content="nhs000" /><meta name="description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D
+Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?  Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương." />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.58.2 with theme even" />
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/" />
@@ -35,22 +36,22 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
 
 
 
 <meta property="og:title" content="Tóm tắt giải thuật di truyền" />
-<meta property="og:description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương." />
+<meta property="og:description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D
+Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?  Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/" />
 <meta property="article:published_time" content="2018-09-15T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-09-15T00:00:00+00:00" />
 <meta itemprop="name" content="Tóm tắt giải thuật di truyền">
-<meta itemprop="description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.">
-
-
-<meta itemprop="datePublished" content="2018-09-15T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-09-15T00:00:00&#43;00:00" />
+<meta itemprop="description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D
+Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?  Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.">
+<meta itemprop="datePublished" content="2018-09-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2018-09-15T00:00:00+00:00" />
 <meta itemprop="wordCount" content="719">
 
 
@@ -58,7 +59,8 @@
 <meta itemprop="keywords" content="AI,vietnamese," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tóm tắt giải thuật di truyền"/>
-<meta name="twitter:description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương."/>
+<meta name="twitter:description" content="Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D
+Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?  Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -236,343 +238,354 @@ if (!doNotTrack) {
       
 <p>
 Bắt nguồn từ clip này <a href="https://www.youtube.com/watch?v=Yo2SepcNyw4">Link</a>, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn.
-Vì thế quyết định tìm hiểu thử. :D
-</p>
-<h1 id="headline-1">
+Vì thế quyết định tìm hiểu thử. :D</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
 Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?
-</h1>
-<p>
-Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.
-</p>
-<h1 id="headline-2">
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
 Thuật ngữ
-</h1>
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
 <ol>
 <li>
-<p>
-population: Bộ tất cả các giải pháp cho 1 vấn đề.
-</p>
+<p>population: Bộ tất cả các giải pháp cho 1 vấn đề.</p>
 </li>
 <li>
-<p>
-Chromosome: Nhiễm sắc thể, tương ứng với 1 giải pháp cho vấn đề
-</p>
+<p>Chromosome: Nhiễm sắc thể, tương ứng với 1 giải pháp cho vấn đề</p>
 </li>
 <li>
-<p>
-Gene: gien, 1 vị trí trên nhiễm sắc thể
-</p>
+<p>Gene: gien, 1 vị trí trên nhiễm sắc thể</p>
 </li>
 <li>
-<p>
-Allele: Giá trị của 1 gene
-</p>
+<p>Allele: Giá trị của 1 gene</p>
 </li>
 <li>
-<p>
-Genotype: Population trong không gian tính toán
-</p>
+<p>Genotype: Population trong không gian tính toán</p>
 </li>
 <li>
-<p>
-Phenotype: Population trong vấn đề thực tế
-</p>
+<p>Phenotype: Population trong vấn đề thực tế</p>
 </li>
 <li>
-<p>
-Decoding: Chuyển từ genotype sang phenotype
-</p>
+<p>Decoding: Chuyển từ genotype sang phenotype</p>
 <ol>
 <li>
-<p>
-Cần được thực hiện nhanh vì được lặp lại trong khi thuật hiện GTDT
-</p>
+<p>Cần được thực hiện nhanh vì được lặp lại trong khi thuật hiện GTDT</p>
 </li>
 </ol>
 </li>
 <li>
-<p>
-Fitness function: Lấy 1 solution làm đầu vào và output độ phù hợp của solution đó.
-</p>
+<p>Fitness function: Lấy 1 solution làm đầu vào và output độ phù hợp của solution đó.</p>
 </li>
 <li>
-<p>
-Genetic Operatorr:  Mutatoion, Selection …
-</p>
+<p>Genetic Operatorr:  Mutatoion, Selection …</p>
 </li>
 </ol>
-<h1 id="headline-3">
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
 Cấu trúc thuật toán 
-</h1>
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
 <ol>
 <li>
-<p>
-Bắt đầu vs 1 bộ population ( có thể tạo random hoặc heuristic )
-</p>
+<p>Bắt đầu vs 1 bộ population ( có thể tạo random hoặc heuristic )</p>
 </li>
 <li>
-<p>
-Tính điểm fitness của các cá thể trong population
-</p>
+<p>Tính điểm fitness của các cá thể trong population</p>
 </li>
 <li>
-<p>
-Crossover??
-</p>
+<p>Crossover??</p>
 </li>
 <li>
-<p>
-Mutation: biến dị
-</p>
+<p>Mutation: biến dị</p>
 </li>
 <li>
-<p>
-Chọn lựa cá thể sống sót
-</p>
+<p>Chọn lựa cá thể sống sót</p>
 </li>
 <li>
-<p>
-Lắp lại bước 2
-</p>
+<p>Lắp lại bước 2</p>
 </li>
 <li>
-<p>
-Kết thúc và đưa ra the best 
-</p>
+<p>Kết thúc và đưa ra the best </p>
 </li>
 </ol>
-<h1 id="headline-4">
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
 Biểu diễn genotype
-</h1>
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
 <pre class="example">
 Việc lựa chọn cách biểu diễn genotype là điều thiết yếu quyết định độ chính xác của thuật toán.
 </pre>
 <ol>
 <li>
-<p>
-Biểu diễn binary
-</p>
+<p>Biểu diễn binary</p>
 </li>
 <li>
-<p>
-Biểu diễn real value 
-</p>
+<p>Biểu diễn real value </p>
 </li>
 <li>
-<p>
-Biểu diễn integer 
-</p>
+<p>Biểu diễn integer </p>
 </li>
 <li>
-<p>
-Biểu diễn hoán vị 
-</p>
+<p>Biểu diễn hoán vị </p>
 </li>
 </ol>
-<h1 id="headline-5">
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
 Fitness function
-</h1>
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
 <pre class="example">
 Fitness function: Lấy 1 solution làm đầu vào và output độ phù hợp của solution đó.
 </pre>
-<h1 id="headline-6">
+</div>
+</div>
+<div id="outline-container-headline-6" class="outline-2">
+<h2 id="headline-6">
 Parent selection
-</h1>
-<p>
-Chọn parent và kết hợp để tạo ra con ở thế hệ kế tiếp. 
-</p>
-<h2 id="headline-7">
+</h2>
+<div id="outline-text-headline-6" class="outline-text-2">
+<p>Chọn parent và kết hợp để tạo ra con ở thế hệ kế tiếp. </p>
+<div id="outline-container-headline-7" class="outline-3">
+<h3 id="headline-7">
 Fitness proportionate selection
-</h2>
-<p>
-Xác suất để được chọn làm parent của mỗi phần tử tỉ lệ với độ fitness của phần tử đó. Do dó phần tử có độ fitness cao hơn có cơ hội được chọn và truyền feature của nó đêns thế hệ tiếp theo cao hơn. 
-</p>
-<h3 id="headline-8">
+</h3>
+<div id="outline-text-headline-7" class="outline-text-3">
+<p>Xác suất để được chọn làm parent của mỗi phần tử tỉ lệ với độ fitness của phần tử đó. Do dó phần tử có độ fitness cao hơn có cơ hội được chọn và truyền feature của nó đêns thế hệ tiếp theo cao hơn. </p>
+<div id="outline-container-headline-8" class="outline-4">
+<h4 id="headline-8">
 Roulettle Wheel Selection
-</h3>
-<p>
-Chiếc nón kỳ diệu, mỗi phần tượng trưng cho 1 phần tử, có độ to tỉ lệ vs fitnesss. Quay rồi fix point chỉ vào đâu thì phần tử đó là parent. 
-</p>
-<h3 id="headline-9">
+</h4>
+<div id="outline-text-headline-8" class="outline-text-4">
+<p>Chiếc nón kỳ diệu, mỗi phần tượng trưng cho 1 phần tử, có độ to tỉ lệ vs fitnesss. Quay rồi fix point chỉ vào đâu thì phần tử đó là parent. </p>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-4">
+<h4 id="headline-9">
 Stochastic Universal Sampling
-</h3>
-<p>
-Có 2 điểm fix point trên vòng quay. 
-</p>
-<h3 id="headline-10">
+</h4>
+<div id="outline-text-headline-9" class="outline-text-4">
+<p>Có 2 điểm fix point trên vòng quay. </p>
+</div>
+</div>
+<div id="outline-container-headline-10" class="outline-4">
+<h4 id="headline-10">
 Tournament selection 
-</h3>
+</h4>
+<div id="outline-text-headline-10" class="outline-text-4">
 <ol>
 <li>
-<p>
-Chọn k phần tử, lấy 2 phần tử best fitness để chọn làm parent
-</p>
+<p>Chọn k phần tử, lấy 2 phần tử best fitness để chọn làm parent</p>
 </li>
 <li>
-<p>
-Hoạt động được với fitness âm 
-</p>
+<p>Hoạt động được với fitness âm </p>
 </li>
 </ol>
-<h3 id="headline-11">
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-4">
+<h4 id="headline-11">
 Rank selection 
-</h3>
+</h4>
+<div id="outline-text-headline-11" class="outline-text-4">
 <ol>
 <li>
-<p>
-Phù hợp khi các phần tử có độ fitness tương tự nhau
-</p>
+<p>Phù hợp khi các phần tử có độ fitness tương tự nhau</p>
 </li>
 <li>
-<p>
-Sắp xếp theo rank, chọn phần tử có rank cao để làm parent 
-</p>
+<p>Sắp xếp theo rank, chọn phần tử có rank cao để làm parent </p>
 </li>
 </ol>
-<h3 id="headline-12">
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-4">
+<h4 id="headline-12">
 Random selection
-</h3>
-<p>
-Cái tên nói lên tất cả 
-</p>
-<h1 id="headline-13">
+</h4>
+<div id="outline-text-headline-12" class="outline-text-4">
+<p>Cái tên nói lên tất cả </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-2">
+<h2 id="headline-13">
 Crossover Giao thoa??
-</h1>
-<h2 id="headline-14">
-One Point Crossover
 </h2>
-<p>
-Chọn 1 điểm, tráo đổi phần đuôi từ điểm đó (gene) của 2 parent cho nhau để tạo ra 2 con 
-</p>
+<div id="outline-text-headline-13" class="outline-text-2">
+<div id="outline-container-headline-14" class="outline-3">
+<h3 id="headline-14">
+One Point Crossover
+</h3>
+<div id="outline-text-headline-14" class="outline-text-3">
+<p>Chọn 1 điểm, tráo đổi phần đuôi từ điểm đó (gene) của 2 parent cho nhau để tạo ra 2 con </p>
 <pre class="example">
 1,2,3,4,|5,6
 a,b,c,d,|e,f
-=> 
+=&gt; 
 1,2,3,4,e,f
 a,b,c,d,5,6
 </pre>
-<h2 id="headline-15">
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-3">
+<h3 id="headline-15">
 Multi Point crossover
-</h2>
-<p>
-Chọn 2 điểm, tráo đổi phần giữa 2 vị trí gene. 
-</p>
-<h2 id="headline-16">
+</h3>
+<div id="outline-text-headline-15" class="outline-text-3">
+<p>Chọn 2 điểm, tráo đổi phần giữa 2 vị trí gene. </p>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-3">
+<h3 id="headline-16">
 Uniform crossover 
-</h2>
-<p>
-Flip coin để quyết định xem có tráo đổi 1 vị trí gene của 2 parent hay không, lặp lại cho đến hết cả phần tử.
-</p>
-<h2 id="headline-17">
+</h3>
+<div id="outline-text-headline-16" class="outline-text-3">
+<p>Flip coin để quyết định xem có tráo đổi 1 vị trí gene của 2 parent hay không, lặp lại cho đến hết cả phần tử.</p>
+</div>
+</div>
+<div id="outline-container-headline-17" class="outline-3">
+<h3 id="headline-17">
 Whole Arithmetic Recombination
-</h2>
+</h3>
+<div id="outline-text-headline-17" class="outline-text-3">
 <pre class="example">
 Child1 = α.x + (1-α).y
 Child2 = α.x + (1-α).y
 </pre>
-<h2 id="headline-18">
+</div>
+</div>
+<div id="outline-container-headline-18" class="outline-3">
+<h3 id="headline-18">
 Davis’ Order Crossover (OX1)
-</h2>
+</h3>
+<div id="outline-text-headline-18" class="outline-text-3">
 <ol>
 <li>
-<p>
-Chọn 2 điểm gene random của parent 1, copy vào child 1
-</p>
+<p>Chọn 2 điểm gene random của parent 1, copy vào child 1</p>
 </li>
 <li>
-<p>
-Chọn những điểm không chứa gene đã chọn ở bước 1 của parent 2 rồi đền nốt vào child 1
-</p>
+<p>Chọn những điểm không chứa gene đã chọn ở bước 1 của parent 2 rồi đền nốt vào child 1</p>
 </li>
 <li>
-<p>
-Lặp lại để tạo ra child 2 
-</p>
+<p>Lặp lại để tạo ra child 2 </p>
 </li>
 </ol>
-<h1 id="headline-19">
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-19" class="outline-2">
+<h2 id="headline-19">
 Mutation 
-</h1>
-<h2 id="headline-20">
+</h2>
+<div id="outline-text-headline-19" class="outline-text-2">
+<div id="outline-container-headline-20" class="outline-3">
+<h3 id="headline-20">
 Bit flip gene
-</h2>
-<p>
-Chọn 1 gene rồi đảo ngược 
-</p>
-<h2 id="headline-21">
+</h3>
+<div id="outline-text-headline-20" class="outline-text-3">
+<p>Chọn 1 gene rồi đảo ngược </p>
+</div>
+</div>
+<div id="outline-container-headline-21" class="outline-3">
+<h3 id="headline-21">
 Random resetting 
-</h2>
-<p>
-Chọn 1 gene rồi random giá trị (trong vùng giá trị có thể )
-</p>
-<h2 id="headline-22">
+</h3>
+<div id="outline-text-headline-21" class="outline-text-3">
+<p>Chọn 1 gene rồi random giá trị (trong vùng giá trị có thể )</p>
+</div>
+</div>
+<div id="outline-container-headline-22" class="outline-3">
+<h3 id="headline-22">
 Swap mutation
-</h2>
-<p>
-Chọn 2 gene rồi tráo đổi 
-</p>
-<h2 id="headline-23">
+</h3>
+<div id="outline-text-headline-22" class="outline-text-3">
+<p>Chọn 2 gene rồi tráo đổi </p>
+</div>
+</div>
+<div id="outline-container-headline-23" class="outline-3">
+<h3 id="headline-23">
 Scramble mutation 
-</h2>
-<p>
-Hoán vị 1 đoạn subset genee của nhiễm sắc thể 
-</p>
-<h2 id="headline-24">
+</h3>
+<div id="outline-text-headline-23" class="outline-text-3">
+<p>Hoán vị 1 đoạn subset genee của nhiễm sắc thể </p>
+</div>
+</div>
+<div id="outline-container-headline-24" class="outline-3">
+<h3 id="headline-24">
 Inversion mutation 
-</h2>
-<p>
-Lật ngược 1 đoạn gene của nhiễm sắc thể 
-</p>
-<h1 id="headline-25">
+</h3>
+<div id="outline-text-headline-24" class="outline-text-3">
+<p>Lật ngược 1 đoạn gene của nhiễm sắc thể </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-25" class="outline-2">
+<h2 id="headline-25">
 Survivor selection 
-</h1>
-<p>
-Chọn phần tử nào để loại bỏ hoặc giữ lại cho thế hệ kế tiếp 
-</p>
-<h2 id="headline-26">
+</h2>
+<div id="outline-text-headline-25" class="outline-text-2">
+<p>Chọn phần tử nào để loại bỏ hoặc giữ lại cho thế hệ kế tiếp </p>
+<div id="outline-container-headline-26" class="outline-3">
+<h3 id="headline-26">
 Age kickout 
-</h2>
+</h3>
+<div id="outline-text-headline-26" class="outline-text-3">
 <ol>
 <li>
-<p>
-Kickout dựa trên tuổi.
-</p>
+<p>Kickout dựa trên tuổi.</p>
 </li>
 <li>
-<p>
-Tạo ra child rồi kickout parent
-</p>
+<p>Tạo ra child rồi kickout parent</p>
 </li>
 <li>
-<p>
-Tăng tuổi của phần còn lại thêm 1 
-</p>
+<p>Tăng tuổi của phần còn lại thêm 1 </p>
 </li>
 </ol>
-<h2 id="headline-27">
+</div>
+</div>
+<div id="outline-container-headline-27" class="outline-3">
+<h3 id="headline-27">
 Fitness base kickout 
-</h2>
-<p>
-Child sẽ replace phần tử có độ fitness thấp 
-</p>
-<h1 id="headline-28">
+</h3>
+<div id="outline-text-headline-27" class="outline-text-3">
+<p>Child sẽ replace phần tử có độ fitness thấp </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-28" class="outline-2">
+<h2 id="headline-28">
 Termination condition 
-</h1>
-<p>
-Điều kiện để dừng thuật toán 
-</p>
+</h2>
+<div id="outline-text-headline-28" class="outline-text-2">
+<p>Điều kiện để dừng thuật toán </p>
 <ol>
 <li>
-<p>
-Không có cải thiện trong bộ population
-</p>
+<p>Không có cải thiện trong bộ population</p>
 </li>
 <li>
-<p>
-Đạt đến số lượng thế hệ tối đa 
-</p>
+<p>Đạt đến số lượng thế hệ tối đa </p>
 </li>
 </ol>
+</div>
+</div>
 
     </div>
 
@@ -602,7 +615,7 @@ Không có cải thiện trong bộ population
             <span class="prev-text nav-default">So good they can&#39;t ignore you summary</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/posts/2018-02-11-automatically-change-input-method-vim/">
+        <a class="next" href="/posts/tech/2018-02-11-automatically-change-input-method-vim/">
             <span class="next-text nav-default">VIMを使用する時に自動的にインプットソースが変わる</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>

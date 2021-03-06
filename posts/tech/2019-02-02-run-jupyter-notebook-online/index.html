@@ -28,7 +28,7 @@ You&amp;rsquo;ll need to place this instance in to public subnet and assign to i
 
 
 
-<meta name="generator" content="Hugo 0.58.2 with theme even" />
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2019-02-02-run-jupyter-notebook-online/" />
@@ -40,7 +40,7 @@ You&amp;rsquo;ll need to place this instance in to public subnet and assign to i
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
 
 
 
@@ -62,10 +62,8 @@ Requirement  A AWS EC2&rsquo;s instance  Setup EC2 Create EC2 instance Choose AM
 You&rsquo;ll need to place this instance in to public subnet and assign to it a public IP. Create key or use existed key for ssh Setup ssh key (optional) At local environment
 1  $ vi ~/.ssh/config   Add this to end of file
 1 2 3 4 5  Host jupyter Hostname {ec2&#39;s public IP above} IdentityFile {above downloaded key} Port 22 User ec2-user   Test access">
-
-
-<meta itemprop="datePublished" content="2019-02-02T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2019-02-02T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2019-02-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-02-02T00:00:00+00:00" />
 <meta itemprop="wordCount" content="426">
 
 
@@ -181,88 +179,77 @@ if (!doNotTrack) {
       <h4>Table of Content</h4>
       </header>
       <nav id="TableOfContents">
-<ul>
-<li><a href="#requirement">Requirement</a></li>
-<li><a href="#setup-ec2">Setup EC2</a>
-<ul>
-<li><a href="#create-ec2-instance">Create EC2 instance</a></li>
-<li><a href="#setup-ssh-key-optional">Setup ssh key (optional)</a></li>
-<li><a href="#setup-jupyter">Setup jupyter</a></li>
-<li><a href="#config-jupyter">Config jupyter</a></li>
-<li><a href="#set-security-group">Set security group</a></li>
-<li><a href="#launch-jupyter-server">Launch jupyter server</a></li>
-<li><a href="#bonus">Bonus</a>
-<ul>
-<li><a href="#auto-start-jupyter-when-instance-is-restarted">Auto start jupyter when instance is restarted</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#done">Done</a></li>
-</ul>
+  <ul>
+    <li><a href="#requirement">Requirement</a></li>
+    <li><a href="#setup-ec2">Setup EC2</a>
+      <ul>
+        <li><a href="#create-ec2-instance">Create EC2 instance</a></li>
+        <li><a href="#setup-ssh-key-optional">Setup ssh key (optional)</a></li>
+        <li><a href="#setup-jupyter">Setup jupyter</a></li>
+        <li><a href="#config-jupyter">Config jupyter</a></li>
+        <li><a href="#set-security-group">Set security group</a></li>
+        <li><a href="#launch-jupyter-server">Launch jupyter server</a></li>
+        <li><a href="#bonus">Bonus</a>
+          <ul>
+            <li><a href="#auto-start-jupyter-when-instance-is-restarted">Auto start jupyter when instance is restarted</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#done">Done</a></li>
+  </ul>
 </nav>
     </aside>
     
     <div class="post-content">
-      
-
-<p>Source</p>
-
+      <p>Source</p>
 <p><a href="https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6">https://medium.com/@alexjsanchez/python-3-notebooks-on-aws-ec2-in-15-mostly-easy-steps-2ec5e662c6c6</a></p>
-
 <h1 id="requirement">Requirement</h1>
-
 <ul>
 <li>A AWS EC2&rsquo;s instance</li>
 </ul>
-
 <h1 id="setup-ec2">Setup EC2</h1>
-
 <h2 id="create-ec2-instance">Create EC2 instance</h2>
-
 <p>Choose AMI
-<img src="/img/2019-02-02-19-15-41.png" alt="" /></p>
-
+<img src="/img/2019-02-02-19-15-41.png" alt=""></p>
 <p>Choose the instance&rsquo;s type
-<img src="/img/2019-02-02-19-16-11.png" alt="" /></p>
-
-<p>Setup network<br />
+<img src="/img/2019-02-02-19-16-11.png" alt=""></p>
+<p>Setup network<br>
 You&rsquo;ll need to place this instance in to public subnet and assign to it a public IP.
-<img src="/img/2019-02-02-19-22-26.png" alt="" /></p>
-
+<img src="/img/2019-02-02-19-22-26.png" alt=""></p>
 <p>Create key or use existed key for ssh
-<img src="/img/2019-02-02-19-24-42.png" alt="" /></p>
-
+<img src="/img/2019-02-02-19-24-42.png" alt=""></p>
 <h2 id="setup-ssh-key-optional">Setup ssh key (optional)</h2>
-
 <p>At local environment</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">$ vi ~/.ssh/config</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ vi ~/.ssh/config
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Add this to end of file</p>
+</div><p>Add this to end of file</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">Host jupyter
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Host jupyter
     Hostname {ec2&#39;s public IP above}
     IdentityFile {above downloaded key}
     Port 22
-    User ec2-user</pre></td></tr></table>
+    User ec2-user
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Test access</p>
+</div><p>Test access</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -274,9 +261,9 @@ You&rsquo;ll need to place this instance in to public subnet and assign to it a 
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ ssh jupyter
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh jupyter
 Last login: Sat Feb  2 09:57:59 2019 from xxxx.xxxx.xxxx
 
     __|  __|_  )
@@ -287,86 +274,86 @@ https://aws.amazon.com/amazon-linux-2/
 3 package(s) needed for security, out of 3 available
 Run &#34;sudo yum update&#34; to apply all updates.
 -bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
-[ec2-user@ip-xxx-xxx-xxx ~]$</pre></td></tr></table>
+[ec2-user@ip-xxx-xxx-xxx ~]$
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="setup-jupyter">Setup jupyter</h2>
-
+</div><h2 id="setup-jupyter">Setup jupyter</h2>
 <ul>
-<li><p>Install anaconda</p>
+<li>Install anaconda</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ mkdir Downloads
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mkdir Downloads
 $ cd Downloads/
 $ wget https://repo.continuum.io/archive/Anaconda3-4.4.0-Linux-x86_64.sh
-$ bash Anaconda3-4.4.0-Linux-x86_64.sh</pre></td></tr></table>
+$ bash Anaconda3-4.4.0-Linux-x86_64.sh
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>Generate ssl certificate</p>
+</div><ul>
+<li>Generate ssl certificate</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ mkdir ~/certs
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mkdir ~/certs
 $ cd ~/certs
-$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</pre></td></tr></table>
+$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
+</code></pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>Generate password used when login</p>
+</div><ul>
+<li>Generate password used when login</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">ipython</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ipython
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">from IPython.lib import passwd
-passwd()</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">from IPython.lib import passwd
+passwd()
+</code></pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
-<p>You&rsquo;ll see a sha1 hashed string in output. <strong>Save it</strong> for use at config step.</p>
-
+</div><p>You&rsquo;ll see a sha1 hashed string in output. <strong>Save it</strong> for use at config step.</p>
 <h2 id="config-jupyter">Config jupyter</h2>
-
 <p>Generate config file</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ jupyter notebook --generate-config</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ jupyter notebook --generate-config
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Open setting file and add following text to the end</p>
+</div><p>Open setting file and add following text to the end</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">vim .jupyter/jupyter_notebook_config.py</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">vim .jupyter/jupyter_notebook_config.py
+</code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -378,9 +365,9 @@ passwd()</pre></td></tr></table>
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">c = get_config()
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">c = get_config()
 
 # Kernel config
 c.IPKernelApp.pylab = &#39;inline&#39;  # if you want plotting support always in your notebook
@@ -391,49 +378,44 @@ c.NotebookApp.ip = &#39;*&#39;
 c.NotebookApp.open_browser = False  #so that the ipython notebook does not opens up a browser by default
 c.NotebookApp.password = u&#39;{hashstring_above}&#39;  #edit this with the SHA hash that you generated after typing in Step 9
 # This is the port we opened in Step 3.
-c.NotebookApp.port = 8888</pre></td></tr></table>
+c.NotebookApp.port = 8888
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="set-security-group">Set security group</h2>
-
+</div><h2 id="set-security-group">Set security group</h2>
 <p>Add port 8888 to access jupyter server</p>
-
-<p><img src="/img/2019-02-02-20-31-48.png" alt="" /></p>
-
+<p><img src="/img/2019-02-02-20-31-48.png" alt=""></p>
 <blockquote>
 <p>If you launched jupyter server at low port as 80, you need to add <code>sudo</code> when launch jupyter server. <a href="https://stackoverflow.com/a/31271618/9913021">Source</a></p>
 </blockquote>
-
 <h2 id="launch-jupyter-server">Launch jupyter server</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">mkdir ~/Notebooks
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">mkdir ~/Notebooks
 cd ~/Notebooks
-jupyter notebook</pre></td></tr></table>
+jupyter notebook
+</code></pre></td></tr></table>
 </div>
-</div>
-<h2 id="bonus">Bonus</h2>
-
+</div><h2 id="bonus">Bonus</h2>
 <h3 id="auto-start-jupyter-when-instance-is-restarted">Auto start jupyter when instance is restarted</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">$ mkdir ~/scripts
-$ vi ~/scripts/jupyter-start.sh</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ mkdir ~/scripts
+$ vi ~/scripts/jupyter-start.sh
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Add following text</p>
+</div><p>Add following text</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+<pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -442,25 +424,23 @@ $ vi ~/scripts/jupyter-start.sh</pre></td></tr></table>
 <pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="nb">source</span> ~/.bashrc
 <span class="nb">cd</span> /home/ec2-user/Notebooks
-jupyter notebook</code></pre></td></tr></table>
+jupyter notebook
+</code></pre></td></tr></table>
 </div>
-</div>
-<p>Setup cronjob</p>
+</div><p>Setup cronjob</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">@reboot /home/ec2-user/scripts/start_jupyter.sh &gt; /dev/null</pre></td></tr></table>
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">@reboot /home/ec2-user/scripts/start_jupyter.sh &gt; /dev/null
+</code></pre></td></tr></table>
 </div>
-</div>
-<h1 id="done">Done</h1>
-
+</div><h1 id="done">Done</h1>
 <p>Enter your login password
-<img src="/img/2019-02-02-20-50-11.png" alt="" /></p>
-
+<img src="/img/2019-02-02-20-50-11.png" alt=""></p>
 <p>And
-<img src="/img/2019-02-02-20-50-42.png" alt="" /></p>
+<img src="/img/2019-02-02-20-50-42.png" alt=""></p>
 
     </div>
 
@@ -485,7 +465,7 @@ jupyter notebook</code></pre></td></tr></table>
           <a href="/tags/english/">english</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/posts/2021-02-24-receive-protobuf-message-from-gcp-pubsub/">
+        <a class="prev" href="/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">Receive Protobuf Message From GCP Pubsub</span>
             <span class="prev-text nav-mobile">Prev</span>

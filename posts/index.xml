@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on nhs000 blog</title>
@@ -14,22 +14,22 @@
     
     <item>
       <title>Create Azure Container Instances with dynamic environment variables</title>
-      <link>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</link>
+      <link>https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</link>
       <pubDate>Wed, 03 Mar 2021 15:30:14 +0700</pubDate>
       
-      <guid>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</guid>
+      <guid>https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</guid>
       <description>This is an example for creating Azure container groups with enviroment variables using Typescript.
 Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodeauth&amp;quot; library to do the authentication using service principal.
-1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
-1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group.</description>
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group.</description>
     </item>
     
     <item>
       <title>Receive Protobuf Message From GCP Pubsub</title>
-      <link>https://nhs000.github.io/posts/2021-02-24-receive-protobuf-message-from-gcp-pubsub/</link>
+      <link>https://nhs000.github.io/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/</link>
       <pubDate>Wed, 24 Feb 2021 14:22:19 +0700</pubDate>
       
-      <guid>https://nhs000.github.io/posts/2021-02-24-receive-protobuf-message-from-gcp-pubsub/</guid>
+      <guid>https://nhs000.github.io/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/</guid>
       <description>In this blog, I&amp;rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&amp;rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&amp;rsquo;s quite simple, we just need 4 steps:
  Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&amp;rsquo;re able to handle millions of requests per day with only one single core VM.</description>
     </item>
@@ -54,7 +54,7 @@ You&amp;rsquo;ll need to place this instance in to public subnet and assign to i
       <pubDate>Thu, 04 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/</guid>
-      <description>Động lực  Trang bị thêm kiến thức   Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt.</description>
+      <description>Động lực  Trang bị thêm kiến thức  Về phần cloud cũng như bên infra, kiến thức của mình tương đối là ít nếu không muốn nói là không biết tí gì :D. Kiểu ban đầu chỉ biết cỡ region của aws là gì thôi ấy. Thực ra mình bắt đầu quyết định học khoá aws của acloud guru từ tháng 2 tháng 3 năm nay lận, do có 1 anh bạn của anh bạn giới thiệu nói khoá này học tốt.</description>
     </item>
     
     <item>
@@ -72,7 +72,10 @@ You&amp;rsquo;ll need to place this instance in to public subnet and assign to i
       <pubDate>Sun, 16 Sep 2018 01:10:00 +0000</pubDate>
       
       <guid>https://nhs000.github.io/posts/life/2018-09-17-so-good-people-cant-ignore/</guid>
-      <description>The summary of the So good they can&amp;#39;t ignore you book.  Source   Following your passion is bad, instead go for Mastery Autonomy and Purpose — the trio of things that have been proven to motivate knowledge workers’  1. The Passion Hypothesis Sucks   Self Determination Theory is the idea that your happiness is related to:    Autonomy : the feeling that you have control over your day, and that your actions are important    Competence : the feeling that you are good at what you do    Relatedness : the feeling of connection to other people     It takes time to build the competence and earn the autonomy necessary to generate enjoyment.</description>
+      <description>The summary of the So good they can&amp;#39;t ignore you book.  Source
+ Following your passion is bad, instead go for Mastery Autonomy and Purpose — the trio of things that have been proven to motivate knowledge workers’
+ 1. The Passion Hypothesis Sucks  Self Determination Theory is the idea that your happiness is related to:
+  Autonomy : the feeling that you have control over your day, and that your actions are important</description>
     </item>
     
     <item>
@@ -81,24 +84,25 @@ You&amp;rsquo;ll need to place this instance in to public subnet and assign to i
       <pubDate>Sat, 15 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://nhs000.github.io/posts/tech/2018_09_16-genetic-algorithm/</guid>
-      <description>Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?   Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.</description>
+      <description>Bắt nguồn từ clip này Link, với một đứa chỉ vài lần nghe thoảng qua về thuật toán này thì thấy hết sức là hấp dẫn. Vì thế quyết định tìm hiểu thử. :D
+Giải thuật di truyền khác gì với các thuật toán tối ưu bằng gradient?  Sử dụng gradient chỉ hiệu quả tốt trên các hàm tối ưu có 1 điểm tối ưu (single-peaked), trong thực tế có nhiều hàm tối ưu không thoả mãn yêu cầu trên làm cho các thuật toán gradient bị mắc ở điểm tối ưu địa phương.</description>
     </item>
     
     <item>
       <title>VIMを使用する時に自動的にインプットソースが変わる</title>
-      <link>https://nhs000.github.io/posts/2018-02-11-automatically-change-input-method-vim/</link>
+      <link>https://nhs000.github.io/posts/tech/2018-02-11-automatically-change-input-method-vim/</link>
       <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://nhs000.github.io/posts/2018-02-11-automatically-change-input-method-vim/</guid>
+      <guid>https://nhs000.github.io/posts/tech/2018-02-11-automatically-change-input-method-vim/</guid>
       <description>問題 日本語やベトナム語を入力している時に、コマンモードを移動する度に英語インプットソースに変えないといけないという問題があるんでしょうね。 そ</description>
     </item>
     
     <item>
       <title>僕にとって役に立ったVimコマンドの紹介</title>
-      <link>https://nhs000.github.io/posts/2017-12-16-my-useful-vim-commands-part-1/</link>
+      <link>https://nhs000.github.io/posts/tech/2017-12-16-my-useful-vim-commands-part-1/</link>
       <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://nhs000.github.io/posts/2017-12-16-my-useful-vim-commands-part-1/</guid>
+      <guid>https://nhs000.github.io/posts/tech/2017-12-16-my-useful-vim-commands-part-1/</guid>
       <description>今まで一年半以上VIMを使ってきました。しかし、まだ知りない機能やファンクションを見つけるのは毎日楽しんでいます。 今回のブログでは、私にとっ</description>
     </item>
     
