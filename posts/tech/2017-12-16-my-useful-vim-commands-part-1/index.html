@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.74.3 with theme even" />
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2017-12-16-my-useful-vim-commands-part-1/" />
@@ -47,9 +47,11 @@
 <meta property="article:modified_time" content="2017-12-16T00:00:00+00:00" />
 <meta itemprop="name" content="僕にとって役に立ったVimコマンドの紹介">
 <meta itemprop="description" content="今まで一年半以上VIMを使ってきました。しかし、まだ知りない機能やファンクションを見つけるのは毎日楽しんでいます。 今回のブログでは、私にとっ">
-<meta itemprop="datePublished" content="2017-12-16T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2017-12-16T00:00:00+00:00" />
-<meta itemprop="wordCount" content="701">
+
+
+<meta itemprop="datePublished" content="2017-12-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-12-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="700">
 
 
 
@@ -159,148 +161,157 @@ if (!doNotTrack) {
       <h4>Table of Content</h4>
       </header>
       <nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-ナビゲーションキー">1. ナビゲーションキー</a>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#テキストを追加場合i-の代わりにaを使いましょう">テキストを追加場合、i の代わりにaを使いましょう</a></li>
-            <li><a href="#一般のhjkl使わずb-e-wを使うようにしましょう">一般のhjkl使わずb e wを使うようにしましょう</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li><a href="#2-確定な範囲の内容を削除">2. 確定な範囲の内容を削除</a>
-      <ul>
-        <li>
-          <ul>
-            <li><a href="#21-di">2.1. <code>di(</code></a></li>
-            <li><a href="#22-di">2.2. <code>di&quot;</code></a></li>
-            <li><a href="#23-df-dt">2.3. <code>df&quot; dt&quot;</code></a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li><a href="#1-ナビゲーションキー">1. ナビゲーションキー</a>
+<ul>
+<li>
+<ul>
+<li><a href="#テキストを追加場合-i-の代わりにaを使いましょう">テキストを追加場合、i の代わりにaを使いましょう</a></li>
+<li><a href="#一般のhjkl使わずb-e-wを使うようにしましょう">一般のhjkl使わずb e wを使うようにしましょう</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#2-確定な範囲の内容を削除">2. 確定な範囲の内容を削除</a>
+<ul>
+<li>
+<ul>
+<li><a href="#2-1-di">2.1. <code>di(</code></a></li>
+<li><a href="#2-2-di">2.2. <code>di&quot;</code></a></li>
+<li><a href="#2-3-df-dt">2.3. <code>df&quot; dt&quot;</code></a></li>
+</ul></li>
+</ul></li>
+</ul>
 </nav>
     </aside>
     
     <div class="post-content">
-      <p>今まで一年半以上VIMを使ってきました。しかし、まだ知りない機能やファンクションを見つけるのは毎日楽しんでいます。
+      
+
+<p>今まで一年半以上VIMを使ってきました。しかし、まだ知りない機能やファンクションを見つけるのは毎日楽しんでいます。
 今回のブログでは、私にとって最も役に立つコマンドや機能を紹介したいと思います。</p>
+
 <h1 id="1-ナビゲーションキー">1. ナビゲーションキー</h1>
-<h3 id="テキストを追加場合i-の代わりにaを使いましょう">テキストを追加場合、i の代わりにaを使いましょう</h3>
+
+<h3 id="テキストを追加場合-i-の代わりにaを使いましょう">テキストを追加場合、i の代わりにaを使いましょう</h3>
+
 <blockquote>
 <p><code>normal mode</code> で <code>i</code> は現在の位置の <code>直前</code> に入力し始める一方で、<code>a</code> は現在の位置の <code>直後</code> に入力するとされます。
 <code>a</code> を使ったら <code>i</code> の場合の不要な <code>一字を右に移動</code> という動作が無くなります。</p>
 </blockquote>
+
 <h3 id="一般のhjkl使わずb-e-wを使うようにしましょう">一般のhjkl使わずb e wを使うようにしましょう</h3>
+
 <ul>
 <li><code>b</code>は単語の前頭に移動する</li>
 <li><code>e</code>は単語の後頭に移動する</li>
 <li><code>w</code>は次の単語の前頭に移動する</li>
 </ul>
+
 <p>なので、私が良く使っているコマンドの組み合わせは<code>ea</code>もしくは<code>w/b</code> + <code>ea</code>です。この組み合わせを実行した、今の位置はどこかにも関わらず、単語の後頭に移動して、<code>insert mode</code>　に変更することができます。</p>
+
 <h1 id="2-確定な範囲の内容を削除">2. 確定な範囲の内容を削除</h1>
-<h3 id="21-di">2.1. <code>di(</code></h3>
+
+<h3 id="2-1-di">2.1. <code>di(</code></h3>
+
 <p>現在の位置は<code>(String m, String n, Integer p)</code>の中とすれば、<code>command mode</code>に変更してから
 <code>di(</code>を実行すると</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(</span><span class="n">String</span> <span class="n">m</span><span class="o">,</span> <span class="n">String</span> <span class="n">n</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">p</span><span class="o">){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(</span><span class="n">String</span> <span class="nf">m</span><span class="p">,</span> <span class="n">String</span> <span class="nf">n</span><span class="p">,</span> <span class="n">Integer</span> <span class="nf">p</span><span class="p">){</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><code>di(</code></p>
+</div>
+<p><code>di(</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(){</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><h3 id="22-di">2.2. <code>di&quot;</code></h3>
+</div>
+<h3 id="2-2-di">2.2. <code>di&quot;</code></h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(</span><span class="n">String</span> <span class="n">m</span><span class="o">,</span> <span class="n">String</span> <span class="n">n</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">p</span><span class="o">){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(</span><span class="n">String</span> <span class="nf">m</span><span class="p">,</span> <span class="n">String</span> <span class="nf">n</span><span class="p">,</span> <span class="n">Integer</span> <span class="nf">p</span><span class="p">){</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><code>di&quot;</code>を実行すると:</p>
+</div>
+<p><code>di&quot;</code>を実行すると:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(</span><span class="n">String</span> <span class="n">m</span><span class="o">,</span> <span class="n">String</span> <span class="n">n</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">p</span><span class="o">){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(</span><span class="n">String</span> <span class="nf">m</span><span class="p">,</span> <span class="n">String</span> <span class="nf">n</span><span class="p">,</span> <span class="n">Integer</span> <span class="nf">p</span><span class="p">){</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><h3 id="23-df-dt">2.3. <code>df&quot; dt&quot;</code></h3>
+</div>
+<h3 id="2-3-df-dt">2.3. <code>df&quot; dt&quot;</code></h3>
+
 <p>この二つのコマンドは<code>di</code>コマンドとの違うのは指定した範囲の全ての内容じゃなくて、現在のカーソルの一から消すということです。</p>
+
 <p><code>|</code><em>は現在のクーソルの位置です。</em></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(</span><span class="n">String</span> <span class="o">|</span><span class="n">m</span><span class="o">,</span> <span class="n">String</span> <span class="n">n</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">p</span><span class="o">){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(</span><span class="n">String</span> <span class="o">|</span><span class="n">m</span><span class="p">,</span> <span class="n">String</span> <span class="nf">n</span><span class="p">,</span> <span class="n">Integer</span> <span class="nf">p</span><span class="p">){</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><code>df)</code></p>
+</div>
+<p><code>df)</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(</span><span class="n">String</span> <span class="o">|{</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(</span><span class="n">String</span> <span class="o">|</span><span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p><code>dt)</code>で消したら指定キャラクターを残します。</p>
+</div>
+<p><code>dt)</code>で消したら指定キャラクターを残します。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVim</span><span class="o">(</span><span class="n">String</span> <span class="o">|){</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">void</span> <span class="n">testVim</span><span class="p">(</span><span class="n">String</span> <span class="o">|</span><span class="p">){</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;Hello world&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div><p>今回はこれで以上とさせて頂きます。</p>
+</div>
+<p>今回はこれで以上とさせて頂きます。</p>
+
 <p>次回には次の内容を紹介していきたいと思います。</p>
+
 <ul>
 <li>vim registryを紹介</li>
 <li>macroを紹介</li>

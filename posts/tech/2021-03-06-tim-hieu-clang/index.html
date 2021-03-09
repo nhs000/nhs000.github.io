@@ -16,15 +16,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="nhs000" /><meta name="description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:
- Preprocess Compile Translate to assembly code Translate to machine code Linking  Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên." />
+<meta name="author" content="nhs000" /><meta name="description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps: - Preprocess - Compile - Translate to assembly code - Translate to machine code - Linking
+Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên." />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.74.3 with theme even" />
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2021-03-06-tim-hieu-clang/" />
@@ -41,26 +41,28 @@
 
 
 <meta property="og:title" content="Tìm hiểu về Clang" />
-<meta property="og:description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:
- Preprocess Compile Translate to assembly code Translate to machine code Linking  Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên." />
+<meta property="og:description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps: - Preprocess - Compile - Translate to assembly code - Translate to machine code - Linking
+Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nhs000.github.io/posts/tech/2021-03-06-tim-hieu-clang/" />
 <meta property="article:published_time" content="2021-03-06T23:34:20+07:00" />
 <meta property="article:modified_time" content="2021-03-06T23:34:20+07:00" />
 <meta itemprop="name" content="Tìm hiểu về Clang">
-<meta itemprop="description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:
- Preprocess Compile Translate to assembly code Translate to machine code Linking  Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên.">
-<meta itemprop="datePublished" content="2021-03-06T23:34:20+07:00" />
-<meta itemprop="dateModified" content="2021-03-06T23:34:20+07:00" />
-<meta itemprop="wordCount" content="1340">
+<meta itemprop="description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps: - Preprocess - Compile - Translate to assembly code - Translate to machine code - Linking
+Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên.">
+
+
+<meta itemprop="datePublished" content="2021-03-06T23:34:20&#43;07:00" />
+<meta itemprop="dateModified" content="2021-03-06T23:34:20&#43;07:00" />
+<meta itemprop="wordCount" content="1345">
 
 
 
 <meta itemprop="keywords" content="vietnamese,compiler," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tìm hiểu về Clang"/>
-<meta name="twitter:description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:
- Preprocess Compile Translate to assembly code Translate to machine code Linking  Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên."/>
+<meta name="twitter:description" content="Mở bài Mình đang quá trình học C&#43;&#43;, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps: - Preprocess - Compile - Translate to assembly code - Translate to machine code - Linking
+Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g&#43;&#43; -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -163,34 +165,35 @@ if (!doNotTrack) {
       <h4>Table of Content</h4>
       </header>
       <nav id="TableOfContents">
-  <ul>
-    <li><a href="#mở-bài">Mở bài</a></li>
-    <li><a href="#clang">Clang</a>
-      <ul>
-        <li><a href="#vấn-đề">Vấn đề</a></li>
-        <li><a href="#đáp-án">Đáp án</a></li>
-      </ul>
-    </li>
-    <li><a href="#kết-luận">Kết luận</a></li>
-    <li><a href="#ref">Ref</a></li>
-  </ul>
+<ul>
+<li><a href="#mở-bài">Mở bài</a></li>
+<li><a href="#clang">Clang</a>
+<ul>
+<li><a href="#vấn-đề">Vấn đề</a></li>
+<li><a href="#đáp-án">Đáp án</a></li>
+</ul></li>
+<li><a href="#kết-luận">Kết luận</a></li>
+<li><a href="#ref">Ref</a></li>
+</ul>
 </nav>
     </aside>
     
     <div class="post-content">
-      <h1 id="mở-bài">Mở bài</h1>
-<p>Mình đang quá trình học <code>C++</code>, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:</p>
-<ul>
-<li>Preprocess</li>
-<li>Compile</li>
-<li>Translate to assembly code</li>
-<li>Translate to machine code</li>
-<li>Linking</li>
-</ul>
+      
+
+<h1 id="mở-bài">Mở bài</h1>
+
+<p>Mình đang quá trình học <code>C++</code>, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:
+- Preprocess
+- Compile
+- Translate to assembly code
+- Translate to machine code
+- Linking</p>
+
 <p>Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng <code>g++ -o index.o index.cpp</code> thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-make" data-lang="make"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -217,7 +220,7 @@ if (!doNotTrack) {
 	./index
 
 <span class="nf">link</span><span class="o">:</span> <span class="n">convert_to_machine_code</span>
-	ld -arch x86_64 -macosx_version_min 10.14 -o index index.o
+	ld -arch x86_64 -macosx_version_min <span class="m">10</span>.14 -o index index.o
 
 <span class="nf">convert_to_machine_code</span><span class="o">:</span> <span class="n">compile</span>
 	as -o index.o index.s
@@ -232,29 +235,32 @@ if (!doNotTrack) {
 	rm index.i index.s index.o index
 </code></pre></td></tr></table>
 </div>
-</div><p>Ngoài trừ bước <code>link</code>, các bước khác đều hoạt động như expected. Đến bước <code>link</code> thì bắn ra lỗi sau:</p>
+</div>
+<p>Ngoài trừ bước <code>link</code>, các bước khác đều hoạt động như expected. Đến bước <code>link</code> thì bắn ra lỗi sau:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></code></pre></td>
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Undefined symbols for architecture x86_64:
+<pre class="chroma">Undefined symbols for architecture x86_64:
   &#34;__Unwind_Resume&#34;, referenced from:
       __ZNSt3__124__put_character_sequenceIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m in index.o
       __ZNSt3__116__pad_and_outputIcNS_11char_traitsIcEEEENS_19ostreambuf_iteratorIT_T0_EES6_PKS4_S8_S8_RNS_8ios_baseES4_ in index.o
-      __ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE5widenEc in index.o
-</code></pre></td></tr></table>
+      __ZNKSt3__19basic_iosIcNS_11char_traitsIcEEE5widenEc in index.o</pre></td></tr></table>
 </div>
-</div><h1 id="clang">Clang</h1>
+</div>
+<h1 id="clang">Clang</h1>
+
 <h2 id="vấn-đề">Vấn đề</h2>
+
 <p>Như thương lệ, search lỗi trên bác Google thì mình đổi phần <code>link</code> trong make file thành như sau thì chạy thành công</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-make" data-lang="make"><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
@@ -262,72 +268,91 @@ if (!doNotTrack) {
 	clang -std<span class="o">=</span>c++11 -stdlib<span class="o">=</span>libc++ -lc++ -m64 -o index index.o
 </code></pre></td></tr></table>
 </div>
-</div><p>Đến đây mình mới tò mò, là tại sao đổi từ <code>ld</code> sang <code>clang</code> thì lại chạy. <code>ld</code> thì theo mình hiểu là tool để <code>linking</code> rồi, thế thì <code>clang</code> là cái giống gì? Nó khác gì với <code>ld</code>?</p>
+</div>
+<p>Đến đây mình mới tò mò, là tại sao đổi từ <code>ld</code> sang <code>clang</code> thì lại chạy. <code>ld</code> thì theo mình hiểu là tool để <code>linking</code> rồi, thế thì <code>clang</code> là cái giống gì? Nó khác gì với <code>ld</code>?</p>
+
 <p>Google nhanh với từ khoá <code>clang vs ld</code>. -&gt; Không ra kết quả gì khả thi. Chứng tỏ giả định của mình rằng 2 <code>clang</code> để thay thế cho <code>ld</code> có vẻ không đúng 100% và không bao quát toàn bộ vấn đề.</p>
+
 <p>Tiếp tục 1 hồi lần mò trên internet, từ khái niệm này sang khái niệm khác. Thì cuối cùng dựa vào 2 link ở dưới, mình đã có thể trả lời được câu hỏi <code>Clang</code> là gì?</p>
+
 <h2 id="đáp-án">Đáp án</h2>
+
 <p><a href="https://en.wikipedia.org/wiki/Clang">Ref1</a>
 <a href="https://bcain-llvm.readthedocs.io/projects/clang/en/latest/Toolchain/">Ref2</a></p>
+
 <p>Trả lời ngắn gọn thì: Clang là một compiler, tương tự như gcc compiler. Do đó không ngạc nhiên khi mình chuyển từ <code>ld</code> sang <code>clang</code> thì lại build được. Do câu lệnh <code>clang</code> nó đã bao gồm cả quá trình linking rồi.</p>
+
 <p>Điểm khác biệt giữa <code>clang</code> và <code>gcc</code> đó chính là <code>clang</code> thì sử dụng <code>LLVM IR (intermediate representation)</code>, trong khi đó <code>gcc</code> thì sử dụng <code>GIMPLE</code> <a href="https://en.wikipedia.org/wiki/Intermediate_representation">Ref</a>. Do đó <code>clang</code> có thể tận dụng được các lợi thế của LLVM để compile ra các platform khác nhau 1 cách dễ dàng. Thậm chí có thể sử dụng <code>LLVM IR</code> để chạy code <code>C/C++</code> với nearly native perfomance trên web bằng cách sử dụng <a href="https://github.com/kripken/emscripten">Emscripten</a> convert <code>LLVM IR</code> sang ngôn ngữ <code>Webassembly</code> và sau đó nhúng vào web.</p>
-<p>
-  <figure>
-    <img src="https://i.stack.imgur.com/9xGDe.png" alt="Minh hoạ vai trò của LLVM">
-    <figcaption style="text-align: center;">Minh hoạ vai trò của LLVM</figcaption>
-  </figure>
-</p>
+
+<p><img src="https://i.stack.imgur.com/9xGDe.png" alt="Minh hoạ vai trò của LLVM" title="Minh hoạ vai trò của LLVM" /></p>
+
 <p>Bởi vì <code>clang</code> sinh ra để thay thế <code>gcc</code>, do đó nó cũng có đủ hết các step của <code>compiler</code> như:</p>
-<pre><code>Preprocessor: This performs the actions of the C preprocessor: expanding #includes and #defines. The -E flag instructs Clang to stop after this step.
-Parsing: This parses and semantically analyzes the source language and builds a source-level intermediate representation (“AST”), producing a precompiled header (PCH), preamble, or precompiled module file (PCM), depending on the input. The -precompile flag instructs Clang to stop after this step. This is the default when the input is a header file.
-IR generation: This converts the source-level intermediate representation into an optimizer-specific intermediate representation (IR); for Clang, this is LLVM IR. The -emit-llvm flag instructs Clang to stop after this step. If combined with -S, Clang will produce textual LLVM IR; otherwise, it will produce LLVM IR bitcode.
-Compiler backend: This converts the intermediate representation into target-specific assembly code. The -S flag instructs Clang to stop after this step.
-Assembler: This converts target-specific assembly code into target-specific machine code object files. The -c flag instructs Clang to stop after this step.
-Linker: This combines multiple object files into a single image (either a shared object or an executable).
-</code></pre>
-<p>Và có thể sử dụng flag <code>-v</code> hoặc <code>-###</code> khi chạy <code>clang</code> để nhìn thấy câu lệnh của các steps trên khi chạy <code>clang</code>. Ví dụ như ở bước <code>Linker</code>, mình thêm <code>-v</code> vào thì sẽ được output như sau:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span></code></pre></td>
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">clang -std=c++11 -stdlib=libc++ -lc++ -m64 -o index index.o -v
+<pre class="chroma">Preprocessor: This performs the actions of the C preprocessor: expanding #includes and #defines. The -E flag instructs Clang to stop after this step.
+Parsing: This parses and semantically analyzes the source language and builds a source-level intermediate representation (“AST”), producing a precompiled header (PCH), preamble, or precompiled module file (PCM), depending on the input. The -precompile flag instructs Clang to stop after this step. This is the default when the input is a header file.
+IR generation: This converts the source-level intermediate representation into an optimizer-specific intermediate representation (IR); for Clang, this is LLVM IR. The -emit-llvm flag instructs Clang to stop after this step. If combined with -S, Clang will produce textual LLVM IR; otherwise, it will produce LLVM IR bitcode.
+Compiler backend: This converts the intermediate representation into target-specific assembly code. The -S flag instructs Clang to stop after this step.
+Assembler: This converts target-specific assembly code into target-specific machine code object files. The -c flag instructs Clang to stop after this step.
+Linker: This combines multiple object files into a single image (either a shared object or an executable).</pre></td></tr></table>
+</div>
+</div>
+<p>Và có thể sử dụng flag <code>-v</code> hoặc <code>-###</code> khi chạy <code>clang</code> để nhìn thấy câu lệnh của các steps trên khi chạy <code>clang</code>. Ví dụ như ở bước <code>Linker</code>, mình thêm <code>-v</code> vào thì sẽ được output như sau:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">clang -std=c++11 -stdlib=libc++ -lc++ -m64 -o index index.o -v
 Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 Target: x86_64-apple-darwin18.5.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
- &#34;/Library/Developer/CommandLineTools/usr/bin/ld&#34; -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.14.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -o index -lc++ index.o -L/usr/local/lib -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a
-</code></pre></td></tr></table>
+ &#34;/Library/Developer/CommandLineTools/usr/bin/ld&#34; -demangle -lto_library /Library/Developer/CommandLineTools/usr/lib/libLTO.dylib -dynamic -arch x86_64 -macosx_version_min 10.14.0 -syslibroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -o index -lc++ index.o -L/usr/local/lib -lSystem /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a</pre></td></tr></table>
 </div>
-</div><p>Có thể thấy rõ ràng là <code>clang</code> gọi đến <code>ld</code> behind the scene, nhưng với 1 loạt các tham số. Đây là lý do mà câu lệnh <code>ld</code> ở make file ban đầu của mình không chạy.</p>
+</div>
+<p>Có thể thấy rõ ràng là <code>clang</code> gọi đến <code>ld</code> behind the scene, nhưng với 1 loạt các tham số. Đây là lý do mà câu lệnh <code>ld</code> ở make file ban đầu của mình không chạy.</p>
+
 <p>Với flag <code>-###</code>, có thể thấy các output của các step còn lại như sau:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span></code></pre></td>
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">clang -std=c++11 -stdlib=libc++ -lc++ -m64 -o index index.cpp -###
+<pre class="chroma">clang -std=c++11 -stdlib=libc++ -lc++ -m64 -o index index.cpp -###
 Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 Target: x86_64-apple-darwin18.5.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
  &#34;/Library/Developer/CommandLineTools/usr/bin/clang&#34; &#34;-cc1&#34; &#34;-triple&#34; &#34;x86_64-apple-macosx10.14.0&#34; &#34;-Wdeprecated-objc-isa-usage&#34; &#34;-Werror=deprecated-objc-isa-usage&#34; &#34;-emit-obj&#34; &#34;-mrelax-all&#34; &#34;-disable-free&#34; &#34;-disable-llvm-verifier&#34; &#34;-discard-value-names&#34; &#34;-main-file-name&#34; &#34;index.cpp&#34; &#34;-mrelocation-model&#34; &#34;pic&#34; &#34;-pic-level&#34; &#34;2&#34; &#34;-mthread-model&#34; &#34;posix&#34; &#34;-mdisable-fp-elim&#34; &#34;-fno-strict-return&#34; &#34;-masm-verbose&#34; &#34;-munwind-tables&#34; &#34;-target-sdk-version=10.14&#34; &#34;-target-cpu&#34; &#34;penryn&#34; &#34;-dwarf-column-info&#34; &#34;-debugger-tuning=lldb&#34; &#34;-target-linker-version&#34; &#34;450.3&#34; &#34;-resource-dir&#34; &#34;/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1&#34; &#34;-isysroot&#34; &#34;/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk&#34; &#34;-I/usr/local/include&#34; &#34;-stdlib=libc++&#34; &#34;-Wno-atomic-implicit-seq-cst&#34; &#34;-Wno-framework-include-private-from-public&#34; &#34;-Wno-atimport-in-framework-header&#34; &#34;-Wno-quoted-include-in-framework-header&#34; &#34;-std=c++11&#34; &#34;-fdeprecated-macro&#34; &#34;-fdebug-compilation-dir&#34; &#34;/Users/hs/Documents/workspace/test&#34; &#34;-ferror-limit&#34; &#34;19&#34; &#34;-fmessage-length&#34; &#34;134&#34; &#34;-stack-protector&#34; &#34;1&#34; &#34;-fblocks&#34; &#34;-fencode-extended-block-signature&#34; &#34;-fregister-global-dtors-with-atexit&#34; &#34;-fobjc-runtime=macosx-10.14.0&#34; &#34;-fcxx-exceptions&#34; &#34;-fexceptions&#34; &#34;-fmax-type-align=16&#34; &#34;-fdiagnostics-show-option&#34; &#34;-fcolor-diagnostics&#34; &#34;-o&#34; &#34;/var/folders/_v/s1ss70n55433z7rhsk2tnd3w0000gn/T/index-3d2ce5.o&#34; &#34;-x&#34; &#34;c++&#34; &#34;index.cpp&#34;
- &#34;/Library/Developer/CommandLineTools/usr/bin/ld&#34; &#34;-demangle&#34; &#34;-lto_library&#34; &#34;/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib&#34; &#34;-no_deduplicate&#34; &#34;-dynamic&#34; &#34;-arch&#34; &#34;x86_64&#34; &#34;-macosx_version_min&#34; &#34;10.14.0&#34; &#34;-syslibroot&#34; &#34;/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk&#34; &#34;-o&#34; &#34;index&#34; &#34;-lc++&#34; &#34;/var/folders/_v/s1ss70n55433z7rhsk2tnd3w0000gn/T/index-3d2ce5.o&#34; &#34;-L/usr/local/lib&#34; &#34;-lSystem&#34; &#34;/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a&#34;
-</code></pre></td></tr></table>
+ &#34;/Library/Developer/CommandLineTools/usr/bin/ld&#34; &#34;-demangle&#34; &#34;-lto_library&#34; &#34;/Library/Developer/CommandLineTools/usr/lib/libLTO.dylib&#34; &#34;-no_deduplicate&#34; &#34;-dynamic&#34; &#34;-arch&#34; &#34;x86_64&#34; &#34;-macosx_version_min&#34; &#34;10.14.0&#34; &#34;-syslibroot&#34; &#34;/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk&#34; &#34;-o&#34; &#34;index&#34; &#34;-lc++&#34; &#34;/var/folders/_v/s1ss70n55433z7rhsk2tnd3w0000gn/T/index-3d2ce5.o&#34; &#34;-L/usr/local/lib&#34; &#34;-lSystem&#34; &#34;/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/lib/darwin/libclang_rt.osx.a&#34;</pre></td></tr></table>
 </div>
-</div><h1 id="kết-luận">Kết luận</h1>
+</div>
+<h1 id="kết-luận">Kết luận</h1>
+
 <p>Thực ra ban đầu bài blog này mình định viết để tìm hiểu về <code>LLVM</code>, nhưng thông qua việc tìm hiểu về <code>Clang</code>, vai trò của nó trong hệ sinh thái của <code>LLVM</code> thì mình cũng hiểu được phần nào về <code>LLVM</code>. Mong là sẽ có 1 lúc nào đó có thời gian để đào sâu hơn và có thể viết ra 1 <a href="https://gnuu.org/2009/09/18/writing-your-own-toy-compiler/">toy compiler</a> dựa trên <code>LLVM</code>.</p>
+
 <h1 id="ref">Ref</h1>
+
 <ul>
 <li><a href="https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html">https://www3.ntu.edu.sg/home/ehchua/programming/cpp/gcc_make.html</a></li>
 <li><a href="https://bcain-llvm.readthedocs.io/projects/clang/en/latest/Toolchain/">https://bcain-llvm.readthedocs.io/projects/clang/en/latest/Toolchain/</a></li>
@@ -336,6 +361,7 @@ InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 <li><a href="http://www.aosabook.org/en/llvm.html">http://www.aosabook.org/en/llvm.html</a></li>
 <li><a href="https://www.infoworld.com/article/3247799/what-is-llvm-the-power-behind-swift-rust-clang-and-more.html">https://www.infoworld.com/article/3247799/what-is-llvm-the-power-behind-swift-rust-clang-and-more.html</a></li>
 </ul>
+
 <!-- Ngay từ câu đầu tiên 
 >Clang /ˈklæŋ/[5] is a compiler front end
 
@@ -357,13 +383,19 @@ Hiểu nôm na là phân tích xử lý về mặt ngữ nghĩa, typing, syntax 
 > GCC is a suite of compilers, with front ends for C, C++, Fortran, Ada, Java, etc., and back-ends for more processors than I'd care to think about.
 
 >The Clang project provides new front-ends for C/C++/Objective C on top of the LLVM backend. The LLVM project also provide a LLVM-gcc, using the GCC front end and the LLVM backend. The DragonEgg project seeks to replace the GCC backend with LLVM. -->
+
 <!-- Nhưng vẫn chưa trả lời được câu hỏi `clang` và `ld` quan hệ với nhau như thế nào?
 
 Tiếp tục t -->
+
 <!-- Đến đây thì mình có thể kết luận được là `Clang` là 1 tập hợp các công cụ  -->
+
 <!-- Và mình nghĩ là để trả lời thì cần phải hiểu cả flow giữa `Clang` và `LLVM`. Do đó mình quyết định tìm hiểu xem `LLVM` là cái gì? -->
+
 <!-- # LLVM  -->
+
 <!-- ![LLVM](https://i.stack.imgur.com/9xGDe.png) -->
+
     </div>
 
     <div class="post-copyright">
@@ -387,7 +419,11 @@ Tiếp tục t -->
           <a href="/tags/compiler/">compiler</a>
           </div>
       <nav class="post-nav">
-        
+        <a class="prev" href="/posts/tech/2021-03-03-delete-multiple-container-instances-azure/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Delete multiple Azure container instances at once</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
         <a class="next" href="/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/">
             <span class="next-text nav-default">Create Azure Container Instances with dynamic environment variables</span>
             <span class="next-text nav-mobile">Next</span>

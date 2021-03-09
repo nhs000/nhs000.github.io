@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.74.3 with theme even" />
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/" />
@@ -50,8 +50,10 @@
 <meta itemprop="name" content="Receive Protobuf Message From GCP Pubsub">
 <meta itemprop="description" content="In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:
  Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM.">
-<meta itemprop="datePublished" content="2021-02-24T14:22:19+07:00" />
-<meta itemprop="dateModified" content="2021-02-24T14:22:19+07:00" />
+
+
+<meta itemprop="datePublished" content="2021-02-24T14:22:19&#43;07:00" />
+<meta itemprop="dateModified" content="2021-02-24T14:22:19&#43;07:00" />
 <meta itemprop="wordCount" content="364">
 
 
@@ -163,31 +165,35 @@ if (!doNotTrack) {
       <h4>Table of Content</h4>
       </header>
       <nav id="TableOfContents">
-  <ul>
-    <li><a href="#create-pubsubclient-and-subcribe-it-into-a-subscription">Create pubSubClient and subcribe it into a subscription</a></li>
-    <li><a href="#message-handle-function">Message handle function</a>
-      <ul>
-        <li><a href="#decode-protobuf-message">Decode protobuf message</a></li>
-      </ul>
-    </li>
-  </ul>
+<ul>
+<li><a href="#create-pubsubclient-and-subcribe-it-into-a-subscription">Create pubSubClient and subcribe it into a subscription</a></li>
+<li><a href="#message-handle-function">Message handle function</a>
+<ul>
+<li><a href="#decode-protobuf-message">Decode protobuf message</a></li>
+</ul></li>
+</ul>
 </nav>
     </aside>
     
     <div class="post-content">
-      <p>In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server.
+      
+
+<p>In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server.
 There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:</p>
+
 <ul>
 <li>Create a client subscribes to the subscription</li>
 <li>Receive raw message in binary</li>
 <li>Decode it into JS object using protofile</li>
 <li>Done</li>
 </ul>
+
 <p>By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM.</p>
+
 <h1 id="create-pubsubclient-and-subcribe-it-into-a-subscription">Create pubSubClient and subcribe it into a subscription</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -201,16 +207,17 @@ There&rsquo;re many resources about handling pubsub message in NodeJS, but we we
 
 <span class="kd">function</span> <span class="nx">listenEventSub</span><span class="p">(</span><span class="nx">eventSub</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//...
-</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">subscription</span> <span class="o">=</span> <span class="nx">pubSubClient</span><span class="p">.</span><span class="nx">subscription</span><span class="p">(</span><span class="nx">subscriptionName</span><span class="p">);</span>
+</span><span class="c1"></span>    <span class="k">const</span> <span class="nx">subscription</span> <span class="o">=</span> <span class="nx">pubSubClient</span><span class="p">.</span><span class="nx">subscription</span><span class="p">(</span><span class="nx">subscriptionName</span><span class="p">);</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Tracked subscription: </span><span class="si">${</span><span class="nx">subscriptionName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
     <span class="c1">//...
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="message-handle-function">Message handle function</h1>
+</div>
+<h1 id="message-handle-function">Message handle function</h1>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -219,22 +226,25 @@ There&rsquo;re many resources about handling pubsub message in NodeJS, but we we
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">async</span> <span class="kd">function</span> <span class="nx">messageHandler</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">messageCount</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">protofilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">mess</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">decodeMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">protofilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">);</span>
-  <span class="nx">await</span> <span class="nx">insert</span><span class="p">(</span><span class="nx">mapEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">mess</span><span class="p">));</span>
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">messageHandler</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">messageCount</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">protofilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="nx">mess</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">decodeMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">protofilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">);</span>
+  <span class="kr">await</span> <span class="nx">insert</span><span class="p">(</span><span class="nx">mapEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">mess</span><span class="p">));</span>
   <span class="nx">message</span><span class="p">.</span><span class="nx">ack</span><span class="p">();</span>
   <span class="nx">messageCount</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">messageCount</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>In the parameters of the handler, we pass the raw message receiver from pubsub subscription as well as the <code>messageCount</code> variable to keep track of the number of total proccessed messages.</p>
+</div>
+<p>In the parameters of the handler, we pass the raw message receiver from pubsub subscription as well as the <code>messageCount</code> variable to keep track of the number of total proccessed messages.</p>
+
 <p>Also, we pass <code>eventName</code>, <code>protofilePath</code> and <code>typeName</code> to provide the information for decode function.
 At line 2, we code the message into a JS object and at line 3, we pass the decoded result to <code>insert</code> function to write it into a MongoDB.</p>
+
 <h2 id="decode-protobuf-message">Decode protobuf message</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -250,21 +260,22 @@ At line 2, we code the message into a JS object and at line 3, we pass the decod
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// proto_utils.js
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">protobuf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;protobufjs&#34;</span><span class="p">);</span>
+</span><span class="c1"></span><span class="k">const</span> <span class="nx">protobuf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;protobufjs&#34;</span><span class="p">);</span>
 
-<span class="nx">async</span> <span class="kd">function</span> <span class="nx">decodeMessage</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="nx">protoFilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">protobuf</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">protoFilePath</span><span class="p">);</span>
-  <span class="kr">const</span> <span class="nx">rawMessage</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">lookupType</span><span class="p">(</span><span class="nx">typeName</span><span class="p">);</span>
-  <span class="kr">const</span> <span class="nx">err</span> <span class="o">=</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+<span class="kr">async</span> <span class="kd">function</span> <span class="nx">decodeMessage</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="nx">protoFilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">protobuf</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">protoFilePath</span><span class="p">);</span>
+  <span class="k">const</span> <span class="nx">rawMessage</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">lookupType</span><span class="p">(</span><span class="nx">typeName</span><span class="p">);</span>
+  <span class="k">const</span> <span class="nx">err</span> <span class="o">=</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+  <span class="k">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
   <span class="k">return</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">toObject</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>We use <code>protobufjs</code> library to do the decoding, it&rsquo;s just simple as it looks. We load the defined protobuf file, search for the <code>typeName</code> passed in the function input. Then we verify whether received binary message contains this <code>typeName</code>. If not we raise an error, otherwise we decode the message, convert it to JS object and return.</p>
+</div>
+<p>We use <code>protobufjs</code> library to do the decoding, it&rsquo;s just simple as it looks. We load the defined protobuf file, search for the <code>typeName</code> passed in the function input. Then we verify whether received binary message contains this <code>typeName</code>. If not we raise an error, otherwise we decode the message, convert it to JS object and return.</p>
 
     </div>
 

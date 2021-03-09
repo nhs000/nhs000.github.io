@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.74.3 with theme even" />
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2018-02-11-automatically-change-input-method-vim/" />
@@ -47,8 +47,10 @@
 <meta property="article:modified_time" content="2018-02-11T00:00:00+00:00" />
 <meta itemprop="name" content="VIMを使用する時に自動的にインプットソースが変わる">
 <meta itemprop="description" content="問題 日本語やベトナム語を入力している時に、コマンモードを移動する度に英語インプットソースに変えないといけないという問題があるんでしょうね。 そ">
-<meta itemprop="datePublished" content="2018-02-11T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2018-02-11T00:00:00+00:00" />
+
+
+<meta itemprop="datePublished" content="2018-02-11T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-02-11T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="671">
 
 
@@ -159,55 +161,62 @@ if (!doNotTrack) {
       <h4>Table of Content</h4>
       </header>
       <nav id="TableOfContents">
-  <ul>
-    <li><a href="#問題">問題</a></li>
-    <li><a href="#対策">対策</a></li>
-  </ul>
+<ul>
+<li><a href="#問題">問題</a></li>
+<li><a href="#対策">対策</a></li>
+</ul>
 </nav>
     </aside>
     
     <div class="post-content">
-      <h1 id="問題">問題</h1>
+      
+
+<h1 id="問題">問題</h1>
+
 <p>日本語やベトナム語を入力している時に、コマンモードを移動する度に英語インプットソースに変えないといけないという問題があるんでしょうね。
 それのような問題（中国語の場合）に対して、解決できるVIMプラグインが有りました。
 今回それを基づいて初めてのVIMプラグイン開発することとして、日本語やベトナム語もそういう機能に適用します。</p>
+
 <h1 id="対策">対策</h1>
+
 <p>全体的に言うと、VIMが提供してくれている<code>InsertEnter</code>と<code>InsertLeave</code>と言うイベントを使います。
 それらの時に現在のカーソルの位置のキャラクターはどんな言語化を判定して、インプットソースを変える。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span></code></pre></td>
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">autocmd InsertEnter * :call s:insert_entered()
+<pre class="chroma">autocmd InsertEnter * :call s:insert_entered()
 
 if g:osxime_insert_leave
   autocmd InsertLeave * :call s:insert_leave()
-endif
-</code></pre></td></tr></table>
+endif</pre></td></tr></table>
 </div>
-</div><p>上記のコードを見ると、<code>InsertEnter</code>イベントが発火したら<code>s:insert_entered()</code>が呼ばることを何とか判定できるんでしょうね。
+</div>
+<p>上記のコードを見ると、<code>InsertEnter</code>イベントが発火したら<code>s:insert_entered()</code>が呼ばることを何とか判定できるんでしょうね。
 そのように、<code>InsertLeave</code>も発火したら<code>s:insert_leave()</code>が呼ばると言う認識が間違いないでしょう。</p>
+
 <blockquote>
 <p>何で<code>s:</code>と言う微妙な文字が入ってるんですか？</p>
 </blockquote>
+
 <p>それはVIMのスコープを指定する文字です。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">:help internal-variables
-</code></pre></td></tr></table>
+<pre class="chroma">:help internal-variables</pre></td></tr></table>
 </div>
-</div><p>を実行したら、以下のスコープを指定する文字一覧が出てきます。</p>
+</div>
+<p>を実行したら、以下のスコープを指定する文字一覧が出てきます。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -215,20 +224,22 @@ endif
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span></code></pre></td>
+</span></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">buffer-variable    b:	  Local to the current buffer.
+<pre class="chroma">buffer-variable    b:	  Local to the current buffer.
 window-variable    w:	  Local to the current window.
 tabpage-variable   t:	  Local to the current tab page.
 global-variable    g:	  Global.
 local-variable     l:	  Local to a function.
 script-variable    s:	  Local to a |:source|&#39;ed Vim script.
 function-argument  a:	  Function argument (only inside a function).
-vim-variable       v:	  Global, predefined by Vim.
-</code></pre></td></tr></table>
+vim-variable       v:	  Global, predefined by Vim.</pre></td></tr></table>
 </div>
-</div><p>と言うのは<code>:s</code>と言うは簡単に言えばファンクションの指定語です。</p>
-<hr>
+</div>
+<p>と言うのは<code>:s</code>と言うは簡単に言えばファンクションの指定語です。</p>
+
+<hr />
+
 <p><em>2021年2月時点：申し訳ないです、このブログを書き続けるつもりだったが現在Emacsを使用することにしましたので、プラグインのGitをこちらに参考してください
 <code>https://github.com/nhs000/vim-macos-ime</code> 。</em></p>
 

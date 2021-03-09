@@ -25,10 +25,10 @@ The command is simple
     
     <item>
       <title>Create Azure Container Instances with dynamic environment variables</title>
-      <link>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</link>
+      <link>https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</link>
       <pubDate>Wed, 03 Mar 2021 15:30:14 +0700</pubDate>
       
-      <guid>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</guid>
+      <guid>https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</guid>
       <description>This is an example for creating Azure container groups with enviroment variables using Typescript.
 Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodeauth&amp;quot; library to do the authentication using service principal.
 1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.

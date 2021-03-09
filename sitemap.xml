@@ -44,7 +44,28 @@
   </url>
   
   <url>
-    <loc>https://nhs000.github.io/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</loc>
+    <loc>https://nhs000.github.io/tags/compiler/</loc>
+    <lastmod>2021-03-06T23:34:20+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/tech/2021-03-06-tim-hieu-clang/</loc>
+    <lastmod>2021-03-06T23:34:20+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/tags/vietnamese/</loc>
+    <lastmod>2021-03-06T23:34:20+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/</loc>
     <lastmod>2021-03-03T15:30:14+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -93,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://nhs000.github.io/posts/2021-02-24-receive-protobuf-message-from-gcp-pubsub/</loc>
+    <loc>https://nhs000.github.io/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/</loc>
     <lastmod>2021-02-24T14:22:19+07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -136,13 +157,6 @@
   
   <url>
     <loc>https://nhs000.github.io/posts/tech/2018-10-04-how-did-i-pass-aws-saa/</loc>
-    <lastmod>2018-10-04T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://nhs000.github.io/tags/vietnamese/</loc>
     <lastmod>2018-10-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -198,14 +212,14 @@
   </url>
   
   <url>
-    <loc>https://nhs000.github.io/posts/2018-02-11-automatically-change-input-method-vim/</loc>
+    <loc>https://nhs000.github.io/posts/tech/2018-02-11-automatically-change-input-method-vim/</loc>
     <lastmod>2018-02-11T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://nhs000.github.io/posts/2017-12-16-my-useful-vim-commands-part-1/</loc>
+    <loc>https://nhs000.github.io/posts/tech/2017-12-16-my-useful-vim-commands-part-1/</loc>
     <lastmod>2017-12-16T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

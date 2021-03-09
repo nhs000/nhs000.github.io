@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>compiler on nhs000 blog</title>
@@ -18,8 +18,8 @@
       <pubDate>Sat, 06 Mar 2021 23:34:20 +0700</pubDate>
       
       <guid>https://nhs000.github.io/posts/tech/2021-03-06-tim-hieu-clang/</guid>
-      <description>Mở bài Mình đang quá trình học C++, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps:
- Preprocess Compile Translate to assembly code Translate to machine code Linking  Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g++ -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên.</description>
+      <description>Mở bài Mình đang quá trình học C++, tò mò nên tìm hiểu lại về các step khi chạy 1 chương trình thì có các steps: - Preprocess - Compile - Translate to assembly code - Translate to machine code - Linking
+Mình thử viết 1 chương trình hello world để test các bước trên. Thay vì sử dụng g++ -o index.o index.cpp thì mình sử dụng make file như dưới đây để tìm hiểu về từng bước ở trên.</description>
     </item>
     
   </channel>

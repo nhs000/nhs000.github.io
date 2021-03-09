@@ -18,15 +18,15 @@
 
 <meta name="author" content="nhs000" /><meta name="description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
 Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodeauth&amp;quot; library to do the authentication using service principal.
-1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
-1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group." />
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group." />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.74.3 with theme even" />
+<meta name="generator" content="Hugo 0.58.2 with theme even" />
 
 
 <link rel="canonical" href="https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/" />
@@ -45,8 +45,8 @@ Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodea
 <meta property="og:title" content="Create Azure Container Instances with dynamic environment variables" />
 <meta property="og:description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
 Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&quot; library to do the authentication using service principal.
-1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
-1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group." />
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/" />
 <meta property="article:published_time" content="2021-03-03T15:30:14+07:00" />
@@ -54,10 +54,12 @@ Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&
 <meta itemprop="name" content="Create Azure Container Instances with dynamic environment variables">
 <meta itemprop="description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
 Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&quot; library to do the authentication using service principal.
-1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
-1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group.">
-<meta itemprop="datePublished" content="2021-03-03T15:30:14+07:00" />
-<meta itemprop="dateModified" content="2021-03-03T15:30:14+07:00" />
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group.">
+
+
+<meta itemprop="datePublished" content="2021-03-03T15:30:14&#43;07:00" />
+<meta itemprop="dateModified" content="2021-03-03T15:30:14&#43;07:00" />
 <meta itemprop="wordCount" content="297">
 
 
@@ -67,8 +69,8 @@ Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&
 <meta name="twitter:title" content="Create Azure Container Instances with dynamic environment variables"/>
 <meta name="twitter:description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
 Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&quot; library to do the authentication using service principal.
-1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
-1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group."/>
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);    After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);    Create container group We define the specs for the container going to be used in the container group."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -171,48 +173,56 @@ if (!doNotTrack) {
       <h4>Table of Content</h4>
       </header>
       <nav id="TableOfContents">
-  <ul>
-    <li><a href="#authentication-and-creating-client">Authentication and creating client</a></li>
-    <li><a href="#create-container-group">Create container group</a></li>
-    <li><a href="#thoughts-and-conclusion">Thoughts and conclusion</a></li>
-  </ul>
+<ul>
+<li><a href="#authentication-and-creating-client">Authentication and creating client</a></li>
+<li><a href="#create-container-group">Create container group</a></li>
+<li><a href="#thoughts-and-conclusion">Thoughts and conclusion</a></li>
+</ul>
 </nav>
     </aside>
     
     <div class="post-content">
-      <!-- 
+      
+
+<!-- 
 # Usecase
 We're migrating some components in our Saas platform from `ECS` service on AWS to `Container instances` on Azure.
 The flow we were using basically based on serverless and we also want use this pattern when switch to Azure.
 This is why we use `Function App` and `Conatiner instances` services.
 
 But we encountered a problem that `Fucntion App` don't support us to update enviroment variables on the fly when we start an the `container group` ([link](https://github.com/MicrosoftDocs/azure-docs/issues/31168))  -->
+
 <p>This is an example for creating Azure <code>container groups</code> with enviroment variables using Typescript.</p>
+
 <h1 id="authentication-and-creating-client">Authentication and creating client</h1>
+
 <p>Firstly we use <code>&quot;@azure/ms-rest-nodeauth&quot;</code> library to do the authentication using service principal.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">msRestNodeAuth</span><span class="p">.</span><span class="nx">loginWithServicePrincipalSecretWithAuthResponse</span><span class="p">(</span><span class="nx">clientId</span><span class="p">,</span> <span class="nx">secrect</span><span class="p">,</span> <span class="nx">tenantId</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>After authenticated successfully, we can get the credentials from the response and use it to create <code>Container Instance</code> client.</p>
+</div>
+<p>After authenticated successfully, we can get the credentials from the response and use it to create <code>Container Instance</code> client.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ContainerInstanceManagementClient</span><span class="p">(</span><span class="nx">authRes</span><span class="p">.</span><span class="nx">credentials</span><span class="p">,</span> <span class="nx">subscriptId</span><span class="p">);</span>    
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ContainerInstanceManagementClient</span><span class="p">(</span><span class="nx">authRes</span><span class="p">.</span><span class="nx">credentials</span><span class="p">,</span> <span class="nx">subscriptId</span><span class="p">);</span>    
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="create-container-group">Create container group</h1>
+</div>
+<h1 id="create-container-group">Create container group</h1>
+
 <p>We define the specs for the container going to be used in the container group.
 Also, we can specify the necessary <code>environment variables</code> here.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -227,7 +237,7 @@ Also, we can specify the necessary <code>environment variables</code> here.</p>
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">dataProcessContainer</span><span class="o">:</span> <span class="nx">Container</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">const</span> <span class="nx">dataProcessContainer</span><span class="o">:</span> <span class="nx">Container</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">name</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">containerName</span><span class="p">,</span>
     <span class="nx">image</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">imageName</span><span class="p">,</span>
     <span class="nx">resources</span><span class="o">:</span> <span class="p">{</span>
@@ -242,10 +252,11 @@ Also, we can specify the necessary <code>environment variables</code> here.</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Then we pass this defined container as a parameter of the container group</p>
+</div>
+<p>Then we pass this defined container as a parameter of the container group</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -254,7 +265,7 @@ Also, we can specify the necessary <code>environment variables</code> here.</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">newContainerGroup</span><span class="o">:</span> <span class="nx">ContainerGroup</span> <span class="o">=</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">const</span> <span class="nx">newContainerGroup</span><span class="o">:</span> <span class="nx">ContainerGroup</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">containers</span><span class="o">:</span> <span class="p">[</span><span class="nx">dataProcessContainer</span><span class="p">],</span>
     <span class="nx">osType</span><span class="o">:</span> <span class="s1">&#39;Linux&#39;</span><span class="p">,</span>
     <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;southeastasia&#39;</span><span class="p">,</span>
@@ -263,17 +274,21 @@ Also, we can specify the necessary <code>environment variables</code> here.</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Finally, we use <code>beginCreateOrUpdate</code> method of the client to create and start the container group.</p>
+</div>
+<p>Finally, we use <code>beginCreateOrUpdate</code> method of the client to create and start the container group.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">containerGroups</span><span class="p">.</span><span class="nx">beginCreateOrUpdate</span><span class="p">(</span><span class="nx">projectName</span><span class="p">,</span> <span class="nx">containerGroupsName</span><span class="p">,</span> <span class="nx">newContainerGroup</span><span class="p">);</span>
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="kr">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">containerGroups</span><span class="p">.</span><span class="nx">beginCreateOrUpdate</span><span class="p">(</span><span class="nx">projectName</span><span class="p">,</span> <span class="nx">containerGroupsName</span><span class="p">,</span> <span class="nx">newContainerGroup</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="thoughts-and-conclusion">Thoughts and conclusion</h1>
+</div>
+<h1 id="thoughts-and-conclusion">Thoughts and conclusion</h1>
+
 <p>I was very struggle to find any resouces or example of using Typescript with Container group SDK as well as Azure SDK in general. So I had to investigate the source code of the library and spent a lot of time for searching on the Internet to get the job done, that makes me decided to write this blog with the hope that it will help someone who has the same problem.</p>
+
 <p>A downside of this approach is that, for each request of updating environment variables, we need to create a new container instance group because currently Azure doesn&rsquo;t support to update the information on the fly (<a href="https://github.com/MicrosoftDocs/azure-docs/issues/31168">link</a>).</p>
 
     </div>
