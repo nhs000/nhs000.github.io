@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Receive Protobuf Message From GCP Pubsub - nhs000 blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="nhs012" /><meta name="description" content="In this blog, I&amp;rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&amp;rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&amp;rsquo;s quite simple, we just need 4 steps:
+ Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&amp;rsquo;re able to handle millions of requests per day with only one single core VM." />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://nhs000.github.io/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Receive Protobuf Message From GCP Pubsub" />
+<meta property="og:description" content="In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:
+ Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nhs000.github.io/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/" />
+<meta property="article:published_time" content="2021-02-24T14:22:19+07:00" />
+<meta property="article:modified_time" content="2021-02-24T14:22:19+07:00" />
+<meta itemprop="name" content="Receive Protobuf Message From GCP Pubsub">
+<meta itemprop="description" content="In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:
+ Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM.">
+<meta itemprop="datePublished" content="2021-02-24T14:22:19+07:00" />
+<meta itemprop="dateModified" content="2021-02-24T14:22:19+07:00" />
+<meta itemprop="wordCount" content="364">
+
+
+
+<meta itemprop="keywords" content="GCP,pubsub,js," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Receive Protobuf Message From GCP Pubsub"/>
+<meta name="twitter:description" content="In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server. There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:
+ Create a client subscribes to the subscription Receive raw message in binary Decode it into JS object using protofile Done  By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">nhs000 blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/posts/">
+        <li class="mobile-menu-item">Posts</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">nhs000 blog</a>
+</div>
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-125809461-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/posts/">Posts</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Receive Protobuf Message From GCP Pubsub</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-02-24 </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+    <aside>
+      <header>
+      <h4>Table of Content</h4>
+      </header>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#create-pubsubclient-and-subcribe-it-into-a-subscription">Create pubSubClient and subcribe it into a subscription</a></li>
+    <li><a href="#message-handle-function">Message handle function</a>
+      <ul>
+        <li><a href="#decode-protobuf-message">Decode protobuf message</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </aside>
+    
+    <div class="post-content">
+      <p>In this blog, I&rsquo;ll show you how to receive a pubsub message in protobuf format and insert it into a MongoDB server.
+There&rsquo;re many resources about handling pubsub message in NodeJS, but we were in trouble to find any resources about handling message in protobuf format except the one in Kotlin. But turn out it&rsquo;s quite simple, we just need 4 steps:</p>
+<ul>
+<li>Create a client subscribes to the subscription</li>
+<li>Receive raw message in binary</li>
+<li>Decode it into JS object using protofile</li>
+<li>Done</li>
+</ul>
+<p>By doing this kind of process through a queue and using protobuf format, we&rsquo;re able to handle millions of requests per day with only one single core VM.</p>
+<h1 id="create-pubsubclient-and-subcribe-it-into-a-subscription">Create pubSubClient and subcribe it into a subscription</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">pubSubClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">PubSub</span><span class="p">({</span><span class="nx">grpc</span><span class="p">,</span> <span class="nx">projectId</span><span class="p">});</span>
+
+<span class="kd">function</span> <span class="nx">listenEventSub</span><span class="p">(</span><span class="nx">eventSub</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//...
+</span><span class="c1"></span>    <span class="kr">const</span> <span class="nx">subscription</span> <span class="o">=</span> <span class="nx">pubSubClient</span><span class="p">.</span><span class="nx">subscription</span><span class="p">(</span><span class="nx">subscriptionName</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Tracked subscription: </span><span class="si">${</span><span class="nx">subscriptionName</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="c1">//...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="message-handle-function">Message handle function</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">async</span> <span class="kd">function</span> <span class="nx">messageHandler</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">messageCount</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">protofilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">mess</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">decodeMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">protofilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">);</span>
+  <span class="nx">await</span> <span class="nx">insert</span><span class="p">(</span><span class="nx">mapEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">mess</span><span class="p">));</span>
+  <span class="nx">message</span><span class="p">.</span><span class="nx">ack</span><span class="p">();</span>
+  <span class="nx">messageCount</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">messageCount</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In the parameters of the handler, we pass the raw message receiver from pubsub subscription as well as the <code>messageCount</code> variable to keep track of the number of total proccessed messages.</p>
+<p>Also, we pass <code>eventName</code>, <code>protofilePath</code> and <code>typeName</code> to provide the information for decode function.
+At line 2, we code the message into a JS object and at line 3, we pass the decoded result to <code>insert</code> function to write it into a MongoDB.</p>
+<h2 id="decode-protobuf-message">Decode protobuf message</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// proto_utils.js
+</span><span class="c1"></span><span class="kr">const</span> <span class="nx">protobuf</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;protobufjs&#34;</span><span class="p">);</span>
+
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">decodeMessage</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="nx">protoFilePath</span><span class="p">,</span> <span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">protobuf</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">protoFilePath</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">rawMessage</span> <span class="o">=</span> <span class="nx">root</span><span class="p">.</span><span class="nx">lookupType</span><span class="p">(</span><span class="nx">typeName</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">err</span> <span class="o">=</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">verify</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">decode</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nx">rawMessage</span><span class="p">.</span><span class="nx">toObject</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We use <code>protobufjs</code> library to do the decoding, it&rsquo;s just simple as it looks. We load the defined protobuf file, search for the <code>typeName</code> passed in the function input. Then we verify whether received binary message contains this <code>typeName</code>. If not we raise an error, otherwise we decode the message, convert it to JS object and return.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">nhs012</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-02-24
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gcp/">GCP</a>
+          <a href="/tags/pubsub/">pubsub</a>
+          <a href="/tags/js/">js</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Create Azure Container Instances with dynamic environment variables</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/posts/tech/2019-02-02-run-jupyter-notebook-online/">
+            <span class="next-text nav-default">Run jupyter notebook online with AWS EC2</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:nhs.000.dev@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/nhs012" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/sonnguyenhuu000/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nhs000/" class="iconfont icon-github" title="github"></a>
+  <a href="https://nhs000.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>nhs000</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125809461-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

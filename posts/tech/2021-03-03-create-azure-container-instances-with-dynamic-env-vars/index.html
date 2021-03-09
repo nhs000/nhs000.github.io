@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Create Azure Container Instances with dynamic environment variables - nhs000 blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="nhs000" /><meta name="description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
+Authentication and creating client Firstly we use &amp;quot;@azure/ms-rest-nodeauth&amp;quot; library to do the authentication using service principal.
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group." />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.74.3 with theme even" />
+
+
+<link rel="canonical" href="https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.2e81bbed97b8b282c1aeb57488cc71c8d8c8ec559f3931531bd396bf31e0d4dd.css" rel="stylesheet">
+
+
+
+<meta property="og:title" content="Create Azure Container Instances with dynamic environment variables" />
+<meta property="og:description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
+Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&quot; library to do the authentication using service principal.
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://nhs000.github.io/posts/tech/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/" />
+<meta property="article:published_time" content="2021-03-03T15:30:14+07:00" />
+<meta property="article:modified_time" content="2021-03-03T15:30:14+07:00" />
+<meta itemprop="name" content="Create Azure Container Instances with dynamic environment variables">
+<meta itemprop="description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
+Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&quot; library to do the authentication using service principal.
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group.">
+<meta itemprop="datePublished" content="2021-03-03T15:30:14+07:00" />
+<meta itemprop="dateModified" content="2021-03-03T15:30:14+07:00" />
+<meta itemprop="wordCount" content="297">
+
+
+
+<meta itemprop="keywords" content="azure,typescript,serverless,nodejs," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Create Azure Container Instances with dynamic environment variables"/>
+<meta name="twitter:description" content="This is an example for creating Azure container groups with enviroment variables using Typescript.
+Authentication and creating client Firstly we use &quot;@azure/ms-rest-nodeauth&quot; library to do the authentication using service principal.
+1  msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(clientId, secrect, tenantId);   After authenticated successfully, we can get the credentials from the response and use it to create Container Instance client.
+1  const client = new ContainerInstanceManagementClient(authRes.credentials, subscriptId);   Create container group We define the specs for the container going to be used in the container group."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">nhs000 blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/posts/">
+        <li class="mobile-menu-item">Posts</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">nhs000 blog</a>
+</div>
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-125809461-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/posts/">Posts</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Create Azure Container Instances with dynamic environment variables</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-03-03 </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+    <aside>
+      <header>
+      <h4>Table of Content</h4>
+      </header>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#authentication-and-creating-client">Authentication and creating client</a></li>
+    <li><a href="#create-container-group">Create container group</a></li>
+    <li><a href="#thoughts-and-conclusion">Thoughts and conclusion</a></li>
+  </ul>
+</nav>
+    </aside>
+    
+    <div class="post-content">
+      <!-- 
+# Usecase
+We're migrating some components in our Saas platform from `ECS` service on AWS to `Container instances` on Azure.
+The flow we were using basically based on serverless and we also want use this pattern when switch to Azure.
+This is why we use `Function App` and `Conatiner instances` services.
+
+But we encountered a problem that `Fucntion App` don't support us to update enviroment variables on the fly when we start an the `container group` ([link](https://github.com/MicrosoftDocs/azure-docs/issues/31168))  -->
+<p>This is an example for creating Azure <code>container groups</code> with enviroment variables using Typescript.</p>
+<h1 id="authentication-and-creating-client">Authentication and creating client</h1>
+<p>Firstly we use <code>&quot;@azure/ms-rest-nodeauth&quot;</code> library to do the authentication using service principal.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">msRestNodeAuth</span><span class="p">.</span><span class="nx">loginWithServicePrincipalSecretWithAuthResponse</span><span class="p">(</span><span class="nx">clientId</span><span class="p">,</span> <span class="nx">secrect</span><span class="p">,</span> <span class="nx">tenantId</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>After authenticated successfully, we can get the credentials from the response and use it to create <code>Container Instance</code> client.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ContainerInstanceManagementClient</span><span class="p">(</span><span class="nx">authRes</span><span class="p">.</span><span class="nx">credentials</span><span class="p">,</span> <span class="nx">subscriptId</span><span class="p">);</span>    
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="create-container-group">Create container group</h1>
+<p>We define the specs for the container going to be used in the container group.
+Also, we can specify the necessary <code>environment variables</code> here.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">dataProcessContainer</span><span class="o">:</span> <span class="nx">Container</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">containerName</span><span class="p">,</span>
+    <span class="nx">image</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">imageName</span><span class="p">,</span>
+    <span class="nx">resources</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">requests</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">memoryInGB</span><span class="o">:</span> <span class="mf">1.5</span><span class="p">,</span>
+            <span class="nx">cpu</span><span class="o">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">environmentVariables</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">triggerParams</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]}</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Then we pass this defined container as a parameter of the container group</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">newContainerGroup</span><span class="o">:</span> <span class="nx">ContainerGroup</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">containers</span><span class="o">:</span> <span class="p">[</span><span class="nx">dataProcessContainer</span><span class="p">],</span>
+    <span class="nx">osType</span><span class="o">:</span> <span class="s1">&#39;Linux&#39;</span><span class="p">,</span>
+    <span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;southeastasia&#39;</span><span class="p">,</span>
+    <span class="nx">imageRegistryCredentials</span><span class="o">:</span> <span class="p">[</span><span class="nx">imageRegistryCredential</span><span class="p">],</span>
+    <span class="nx">restartPolicy</span><span class="o">:</span> <span class="s1">&#39;Never&#39;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Finally, we use <code>beginCreateOrUpdate</code> method of the client to create and start the container group.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">client</span><span class="p">.</span><span class="nx">containerGroups</span><span class="p">.</span><span class="nx">beginCreateOrUpdate</span><span class="p">(</span><span class="nx">projectName</span><span class="p">,</span> <span class="nx">containerGroupsName</span><span class="p">,</span> <span class="nx">newContainerGroup</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="thoughts-and-conclusion">Thoughts and conclusion</h1>
+<p>I was very struggle to find any resouces or example of using Typescript with Container group SDK as well as Azure SDK in general. So I had to investigate the source code of the library and spent a lot of time for searching on the Internet to get the job done, that makes me decided to write this blog with the hope that it will help someone who has the same problem.</p>
+<p>A downside of this approach is that, for each request of updating environment variables, we need to create a new container instance group because currently Azure doesn&rsquo;t support to update the information on the fly (<a href="https://github.com/MicrosoftDocs/azure-docs/issues/31168">link</a>).</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">nhs000</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-03-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/azure/">azure</a>
+          <a href="/tags/typescript/">typescript</a>
+          <a href="/tags/serverless/">serverless</a>
+          <a href="/tags/nodejs/">nodejs</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/posts/tech/2021-03-06-tim-hieu-clang/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Tìm hiểu về Clang</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/posts/tech/2021-02-24-receive-protobuf-message-from-gcp-pubsub/">
+            <span class="next-text nav-default">Receive Protobuf Message From GCP Pubsub</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:nhs.000.dev@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://twitter.com/nhs012" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="https://www.linkedin.com/in/sonnguyenhuu000/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/nhs000/" class="iconfont icon-github" title="github"></a>
+  <a href="https://nhs000.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>nhs000</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  
+  
+
+
+
+<script type="text/javascript" src="/js/main.min.c12618f9a600c40bd024996677e951e64d3487006775aeb22e200c990006c5c7.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125809461-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>
