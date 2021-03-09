@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>container instance on nhs000 blog</title>
+    <link>https://nhs000.github.io/tags/container-instance/</link>
+    <description>Recent content in container instance on nhs000 blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>nhs000</copyright>
+    <lastBuildDate>Tue, 09 Mar 2021 22:40:52 +0700</lastBuildDate>
+    
+	<atom:link href="https://nhs000.github.io/tags/container-instance/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Delete multiple Azure container instances at once</title>
+      <link>https://nhs000.github.io/posts/tech/2021-03-03-delete-multiple-container-instances-azure/</link>
+      <pubDate>Tue, 09 Mar 2021 22:40:52 +0700</pubDate>
+      
+      <guid>https://nhs000.github.io/posts/tech/2021-03-03-delete-multiple-container-instances-azure/</guid>
+      <description>As continuation of the blog about creating Azure container instance in Typescript with dynamic environment variables, in this blog I&amp;rsquo;ll show the way we can delete multiple container instances at once.
+The command is simple
+1  az container list --resource-group test-project --query=[0:50].id | sed &amp;#39;s/\[//&amp;#39; | sed &amp;#39;s/\]//&amp;#39; | sed &amp;#39;s/,/ /&amp;#39; | xargs az container delete --yes --id   In above command, I just you simple query condition that selects first 50 container instances in the account.</description>
+    </item>
+    
+  </channel>
+</rss>

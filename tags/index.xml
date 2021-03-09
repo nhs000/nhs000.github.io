@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>nhs000</copyright>
-    <lastBuildDate>Wed, 03 Mar 2021 15:30:14 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 09 Mar 2021 22:40:52 +0700</lastBuildDate>
     
 	<atom:link href="https://nhs000.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,18 @@
     <item>
       <title>azure</title>
       <link>https://nhs000.github.io/tags/azure/</link>
-      <pubDate>Wed, 03 Mar 2021 15:30:14 +0700</pubDate>
+      <pubDate>Tue, 09 Mar 2021 22:40:52 +0700</pubDate>
       
       <guid>https://nhs000.github.io/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>container instance</title>
+      <link>https://nhs000.github.io/tags/container-instance/</link>
+      <pubDate>Tue, 09 Mar 2021 22:40:52 +0700</pubDate>
+      
+      <guid>https://nhs000.github.io/tags/container-instance/</guid>
       <description></description>
     </item>
     

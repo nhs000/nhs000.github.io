@@ -46,7 +46,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://nhs000.github.io/" />
 
-<meta property="og:updated_time" content="2021-03-03T15:30:14+07:00" />
+<meta property="og:updated_time" content="2021-03-09T22:40:52+07:00" />
 <meta itemprop="name" content="nhs000 blog">
 <meta itemprop="description" content="">
 
@@ -137,6 +137,27 @@ if (!doNotTrack) {
       <div class="content-wrapper">
         <div id="content" class="content">
           <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/posts/tech/2021-03-03-delete-multiple-container-instances-azure/">Delete multiple Azure container instances at once</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-03-09 </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      As continuation of the blog about creating Azure container instance in Typescript with dynamic environment variables, in this blog I&rsquo;ll show the way we can delete multiple container instances at once.
+The command is simple
+1  az container list --resource-group test-project --query=[0:50].id | sed &#39;s/\[//&#39; | sed &#39;s/\]//&#39; | sed &#39;s/,/ /&#39; | xargs az container delete --yes --id   In above command, I just you simple query condition that selects first 50 container instances in the account.
+    </div>
+    <div class="read-more">
+      <a href="/posts/tech/2021-03-03-delete-multiple-container-instances-azure/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
     <article class="post">
   <header class="post-header">
     <h1 class="post-title"><a class="post-link" href="/posts/2021-03-03-create-azure-container-instances-with-dynamic-env-vars/">Create Azure Container Instances with dynamic environment variables</a></h1>
