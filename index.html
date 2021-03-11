@@ -150,7 +150,7 @@ if (!doNotTrack) {
     <div class="post-summary">
       As continuation of the blog about creating Azure container instance in Typescript with dynamic environment variables, in this blog I&rsquo;ll show the way we can delete multiple container instances at once.
 The command is simple
-1  az container list --resource-group test-project --query=[0:50].id | sed &#39;s/\[//&#39; | sed &#39;s/\]//&#39; | sed &#39;s/,/ /&#39; | xargs az container delete --yes --id   In above command, I just you simple query condition that selects first 50 container instances in the account.
+1  az container list --resource-group test-project --query=[0:50].id | sed &#39;s/\[//&#39; | sed &#39;s/\]//&#39; | sed &#39;s/,/ /&#39; | xargs az container delete --yes --id   In above command, I just use simple query condition that selects first 50 container instances in the account.
     </div>
     <div class="read-more">
       <a href="/posts/tech/2021-03-03-delete-multiple-container-instances-azure/" class="read-more-link">Read more...</a>
