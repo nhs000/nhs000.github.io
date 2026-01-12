@@ -21,9 +21,9 @@ for file in _posts/*.md; do
 
     # Convert [[Note|Display Text]] -> [Display Text](/note/)
     # Convert [[Note]] -> [Note](/note/)
-    sed -i '' -E '
-        s/\[\[([^]|]+)\|([^]]+)\]\]/[\2](\/\L\1\/)/g
-        s/\[\[([^]]+)\]\]/[\1](\/\L\1\/)/g
+    perl -i -pe '
+        s/\[\[([^\]|]+)\|([^\]]+)\]\]/[$2](\/$1\/)/g;
+        s/\[\[([^\]]+)\]\]/[$1](\/$1\/)/g;
     ' "$file"
 
     echo "Processed: $file"
