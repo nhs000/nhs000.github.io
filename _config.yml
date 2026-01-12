@@ -1,0 +1,18 @@
+title: nhs000
+description: Technical blog
+author: nhs000
+
+# Build settings
+theme: minima
+permalink: /:title/
+
+# Minima theme settings
+minima:
+  skin: classic
+  date_format: "%b %-d, %Y"
+
+# Exclude from processing
+exclude:
+  - publish.sh
+  - README.md
+  - .gitignore
