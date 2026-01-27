@@ -2,6 +2,9 @@ title: nhs000
 description: Technical blog
 author: nhs000
 
+# Google Analytics
+google_analytics: G-WJWZBSMLY4
+
 # Build settings
 theme: minima
 permalink: /:title/
